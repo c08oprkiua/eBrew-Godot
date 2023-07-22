@@ -1,0 +1,9 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://53vmtu1ri3lh"]
+
+[ext_resource type="Texture2D" uid="uid://b6aabq5566ka3" path="res://Assets/ScrollGrab.png" id="1_6txni"]
+
+[resource]
+content_margin_left = 65.0
+content_margin_right = 65.0
+texture = ExtResource("1_6txni")
+axis_stretch_horizontal = 2

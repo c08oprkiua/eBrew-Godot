@@ -1,0 +1,33 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cbw4j15uc8slj"]
+
+[ext_resource type="Texture2D" uid="uid://drjltsomejl56" path="res://Assets/selectedmenupopout.png" id="1_fdpq2"]
+[ext_resource type="StyleBox" uid="uid://ng374ur03yj6" path="res://clear.tres" id="1_yw8rh"]
+[ext_resource type="Texture2D" uid="uid://c0h6x1koosghp" path="res://Assets/scrolldown.png" id="2_4eku5"]
+[ext_resource type="StyleBox" uid="uid://53vmtu1ri3lh" path="res://scrollgrabby.tres" id="2_33wsx"]
+[ext_resource type="Texture2D" uid="uid://beg7awtoq4qim" path="res://Assets/ScrollUp.png" id="2_i3jy4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sx0dl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_88ieb"]
+texture = ExtResource("1_fdpq2")
+
+[resource]
+/styles/clear = SubResource("StyleBoxTexture_sx0dl")
+PopupMenu/styles/panel = SubResource("StyleBoxTexture_88ieb")
+TabBar/styles/tab_disabled = ExtResource("1_yw8rh")
+TabBar/styles/tab_selected = ExtResource("1_yw8rh")
+TabBar/styles/tab_unselected = ExtResource("1_yw8rh")
+TabContainer/styles/panel = ExtResource("1_yw8rh")
+TabContainer/styles/tab_disabled = ExtResource("1_yw8rh")
+TabContainer/styles/tab_selected = ExtResource("1_yw8rh")
+TabContainer/styles/tab_unselected = ExtResource("1_yw8rh")
+TabContainer/styles/tabbar_background = ExtResource("1_yw8rh")
+VScrollBar/icons/decrement = ExtResource("2_i3jy4")
+VScrollBar/icons/decrement_highlight = ExtResource("2_i3jy4")
+VScrollBar/icons/decrement_pressed = ExtResource("2_i3jy4")
+VScrollBar/icons/increment = ExtResource("2_4eku5")
+VScrollBar/icons/increment_highlight = ExtResource("2_4eku5")
+VScrollBar/icons/increment_pressed = ExtResource("2_4eku5")
+VScrollBar/styles/grabber = ExtResource("2_33wsx")
+VScrollBar/styles/grabber_highlight = ExtResource("2_33wsx")
+VScrollBar/styles/grabber_pressed = ExtResource("2_33wsx")
