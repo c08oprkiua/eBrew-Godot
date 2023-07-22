@@ -7,5 +7,5 @@ As well as recreating the original concept, I've also made some minor changes. S
 
 PS: If you happen to have the orignal assets of the mockup, let me know and/or make a pull request to add them to the repo, because right now I'm just working with assets I edited out of the few screenshots posted in the above GBATemp thread.
 
-To run this, download the files into a folder and then then add that folder to your project list in Godot 4.2
+To run this, download the files into a folder and then then add that folder to your project list in Godot 4.1
 
