@@ -1,0 +1,34 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="eBrew POC"
+config/description="This is a proof of concept implimentation of the eBrew Store mockups from 2021."
+run/main_scene="res://Scenes/ui.tscn"
+config/features=PackedStringArray("4.1", "GL Compatibility")
+boot_splash/bg_color=Color(0.137255, 0.478431, 0.780392, 1)
+boot_splash/image="res://Assets/eBrewText.png"
+boot_splash/fullsize=false
+config/icon="res://Assets/theE.png"
+
+[display]
+
+window/stretch/mode="viewport"
+
+[layer_names]
+
+2d_render/layer_1="ButtonsActive"
+2d_render/layer_2="ButtonsHidden"
+2d_render/layer_10="Background"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
