@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://di1rlcbrlpb3n"]
+
+[ext_resource type="Texture2D" uid="uid://b0dtvemyftf4q" path="res://Assets/selectedpreview.png" id="1_a6boy"]
+[ext_resource type="Texture2D" uid="uid://b74mljkkvsr43" path="res://Assets/selectedmenu.png" id="2_jajqn"]
+[ext_resource type="Texture2D" uid="uid://bg06aung4an3v" path="res://Assets/DLbrew.png" id="3_7shhr"]
+[ext_resource type="Texture2D" uid="uid://xops4w1owkk0" path="res://Assets/gotbrew.png" id="4_16gbn"]
+[ext_resource type="Texture2D" uid="uid://b61y52rl6jcev" path="res://Assets/failgotbrew.png" id="5_o080n"]
+[ext_resource type="Texture2D" uid="uid://dokg7u0mn18d7" path="res://Assets/tweakbrew.png" id="6_jqlmn"]
+[ext_resource type="Texture2D" uid="uid://cqeofe4s2fhsr" path="res://Assets/yeetbrew.png" id="7_dpoig"]
+
+[sub_resource type="GDScript" id="GDScript_swrnd"]
+script/source = "extends TextureButton
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="GenericItem" type="TextureButton"]
+clip_children = 2
+layout_direction = 1
+size_flags_horizontal = 10
+size_flags_vertical = 2
+focus_neighbor_bottom = NodePath("../GenericItem2")
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("1_a6boy")
+texture_pressed = ExtResource("2_jajqn")
+stretch_mode = 0
+script = SubResource("GDScript_swrnd")
+
+[node name="OptionContainer" type="HBoxContainer" parent="." node_paths=PackedStringArray("shortcut_context")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -357.0
+offset_right = 3.0
+offset_bottom = 120.0
+grow_horizontal = 0
+shortcut_context = NodePath("..")
+alignment = 1
+
+[node name="Download" type="TextureButton" parent="OptionContainer"]
+show_behind_parent = true
+visibility_layer = 2
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+tooltip_text = "Select to download homebrew"
+focus_neighbor_right = NodePath("../Settings")
+focus_previous = NodePath("../..")
+texture_normal = ExtResource("3_7shhr")
+texture_pressed = ExtResource("4_16gbn")
+texture_disabled = ExtResource("5_o080n")
+
+[node name="Settings" type="TextureButton" parent="OptionContainer"]
+show_behind_parent = true
+visibility_layer = 2
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Download")
+focus_neighbor_right = NodePath("../Delete")
+focus_previous = NodePath("../..")
+texture_normal = ExtResource("6_jqlmn")
+
+[node name="Delete" type="TextureButton" parent="OptionContainer"]
+show_behind_parent = true
+visibility_layer = 2
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Settings")
+focus_previous = NodePath("../..")
+texture_normal = ExtResource("7_dpoig")

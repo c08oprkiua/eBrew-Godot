@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://tksrho8q8wap"]
+
+[ext_resource type="Theme" uid="uid://cbw4j15uc8slj" path="res://clear_tabs.tres" id="1_gjcpe"]
+[ext_resource type="Texture2D" uid="uid://b0dtvemyftf4q" path="res://Assets/selectedpreview.png" id="3_ui3np"]
+[ext_resource type="Texture2D" uid="uid://b74mljkkvsr43" path="res://Assets/selectedmenu.png" id="4_7whb1"]
+[ext_resource type="Texture2D" uid="uid://bg06aung4an3v" path="res://Assets/DLbrew.png" id="5_qc7hp"]
+[ext_resource type="Texture2D" uid="uid://xops4w1owkk0" path="res://Assets/gotbrew.png" id="6_hhlp4"]
+[ext_resource type="Texture2D" uid="uid://b61y52rl6jcev" path="res://Assets/failgotbrew.png" id="7_n1ovu"]
+[ext_resource type="Texture2D" uid="uid://dokg7u0mn18d7" path="res://Assets/tweakbrew.png" id="8_y0a8b"]
+[ext_resource type="Texture2D" uid="uid://cqeofe4s2fhsr" path="res://Assets/yeetbrew.png" id="9_qllch"]
+
+[node name="Test" type="TabContainer"]
+offset_right = 648.0
+offset_bottom = 130.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_right = NodePath("HomebrewPreview")
+focus_next = NodePath("HomebrewPreview")
+focus_mode = 2
+theme = ExtResource("1_gjcpe")
+tab_alignment = 1
+clip_tabs = false
+tabs_visible = false
+all_tabs_in_front = true
+
+[node name="HomebrewPreview" type="TabBar" parent="."]
+clip_contents = true
+layout_mode = 2
+focus_neighbor_left = NodePath("..")
+focus_neighbor_right = NodePath("../BrewOptions")
+focus_mode = 2
+theme = ExtResource("1_gjcpe")
+tab_alignment = 1
+select_with_rmb = true
+tab_count = 1
+tab_0/title = ""
+tab_0/icon = ExtResource("3_ui3np")
+
+[node name="BrewOptions" type="TabBar" parent="."]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../HomebrewPreview")
+theme = ExtResource("1_gjcpe")
+tab_alignment = 1
+select_with_rmb = true
+tab_count = 1
+tab_0/title = ""
+tab_0/icon = ExtResource("4_7whb1")
+
+[node name="OptionContainer" type="HBoxContainer" parent="BrewOptions" node_paths=PackedStringArray("shortcut_context")]
+layout_mode = 1
+offset_left = 288.0
+offset_right = 648.0
+offset_bottom = 130.0
+shortcut_context = NodePath("..")
+alignment = 1
+
+[node name="Download" type="TextureButton" parent="BrewOptions/OptionContainer"]
+show_behind_parent = true
+visibility_layer = 2
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+tooltip_text = "Select to download homebrew"
+focus_neighbor_right = NodePath("../Settings")
+focus_previous = NodePath("../..")
+texture_normal = ExtResource("5_qc7hp")
+texture_pressed = ExtResource("6_hhlp4")
+texture_disabled = ExtResource("7_n1ovu")
+
+[node name="Settings" type="TextureButton" parent="BrewOptions/OptionContainer"]
+show_behind_parent = true
+visibility_layer = 2
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Download")
+focus_neighbor_right = NodePath("../Delete")
+focus_previous = NodePath("../..")
+texture_normal = ExtResource("8_y0a8b")
+
+[node name="Delete" type="TextureButton" parent="BrewOptions/OptionContainer"]
+show_behind_parent = true
+visibility_layer = 2
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Settings")
+focus_previous = NodePath("../..")
+texture_normal = ExtResource("9_qllch")

@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://ge0j4vxpnf0"]
+
+[ext_resource type="Script" path="res://Scripts/stageset.gd" id="1_e2r18"]
+[ext_resource type="Script" path="res://Scripts/infofetch.gd" id="1_iqqxb"]
+[ext_resource type="Script" path="res://Scripts/RepoListLoad.gd" id="2_b28yp"]
+[ext_resource type="Theme" uid="uid://cbw4j15uc8slj" path="res://clear_tabs.tres" id="2_uyxk3"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_e2r18")
+
+[node name="StoreFetch" type="HTTPRequest" parent="."]
+script = ExtResource("1_iqqxb")
+
+[node name="BrewBackground" type="TextureRect" parent="."]
+visibility_layer = 512
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 5
+
+[node name="BrewMusic" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="RepoLoad" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 165.0
+offset_bottom = 47.0
+text = "Click to load HBAS"
+
+[node name="CoreUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme = ExtResource("2_uyxk3")
+
+[node name="BrewLore" type="RichTextLabel" parent="CoreUI"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 304.0
+offset_right = 384.0
+offset_bottom = 536.0
+text = "THis is filler text. fill this with the full decription of the homebrew"
+scroll_following = true
+
+[node name="ListContainer" type="ScrollContainer" parent="CoreUI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -688.0
+offset_top = -260.0
+offset_bottom = 244.0
+grow_horizontal = 0
+grow_vertical = 2
+follow_focus = true
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CoreUI/ListContainer"]
+layout_mode = 2
+script = ExtResource("2_b28yp")
+list = 50
+
+[connection signal="request_completed" from="StoreFetch" to="StoreFetch" method="_on_request_completed"]
+[connection signal="pressed" from="RepoLoad" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="RepoLoad" to="StoreFetch" method="_on_button_pressed"]

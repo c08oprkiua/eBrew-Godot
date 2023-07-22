@@ -1,0 +1,125 @@
+[gd_scene load_steps=15 format=3 uid="uid://dhtdfrq8tvh7e"]
+
+[ext_resource type="ButtonGroup" uid="uid://bogh5ks6jbxtr" path="res://Scripts/MenuItems.tres" id="1_ac1hd"]
+[ext_resource type="Texture2D" uid="uid://b0dtvemyftf4q" path="res://Assets/selectedpreview.png" id="2_ac6vk"]
+[ext_resource type="Texture2D" uid="uid://b74mljkkvsr43" path="res://Assets/selectedmenu.png" id="3_tcd7q"]
+[ext_resource type="Texture2D" uid="uid://cs42pg8rjgcy2" path="res://Assets/Focusedmenu.png" id="4_6cycl"]
+[ext_resource type="Script" path="res://Scripts/MenuControlF.gd" id="5_idhyh"]
+[ext_resource type="Texture2D" uid="uid://bg06aung4an3v" path="res://Assets/DLbrew.png" id="6_jiri4"]
+[ext_resource type="Texture2D" uid="uid://xops4w1owkk0" path="res://Assets/gotbrew.png" id="7_jfahr"]
+[ext_resource type="Texture2D" uid="uid://dch4orgx3tpt" path="res://Assets/focusoverlay.png" id="8_gbx3r"]
+[ext_resource type="Texture2D" uid="uid://b61y52rl6jcev" path="res://Assets/failgotbrew.png" id="9_k7s6i"]
+[ext_resource type="Texture2D" uid="uid://dokg7u0mn18d7" path="res://Assets/tweakbrew.png" id="10_k4y2k"]
+[ext_resource type="Texture2D" uid="uid://da4hac0fxo48" path="res://Assets/selectedtweakbrew.png" id="11_v2j5h"]
+[ext_resource type="Texture2D" uid="uid://cqeofe4s2fhsr" path="res://Assets/yeetbrew.png" id="12_57d8c"]
+[ext_resource type="Texture2D" uid="uid://mbxsr5isldfv" path="res://Assets/selectedyeetbrew.png" id="13_52uts"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_80tpv"]
+
+[node name="GenericItem" type="TextureButton"]
+clip_children = 2
+layout_direction = 1
+size_flags_horizontal = 10
+size_flags_vertical = 2
+toggle_mode = true
+button_group = ExtResource("1_ac1hd")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+texture_normal = ExtResource("2_ac6vk")
+texture_pressed = ExtResource("3_tcd7q")
+texture_hover = ExtResource("4_6cycl")
+texture_focused = ExtResource("4_6cycl")
+stretch_mode = 0
+script = ExtResource("5_idhyh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 272.0
+offset_bottom = 112.0
+
+[node name="InfoContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+offset_left = 296.0
+offset_top = 8.0
+offset_right = 632.0
+offset_bottom = 112.0
+
+[node name="Title" type="Label" parent="InfoContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Homebrew Text"
+label_settings = SubResource("LabelSettings_80tpv")
+text_overrun_behavior = 3
+
+[node name="Description" type="RichTextLabel" parent="InfoContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "This is filler text for a homebrew app
+
+Filler text pt 1
+
+Filler text pt 2"
+fit_content = true
+scroll_following = true
+autowrap_mode = 2
+
+[node name="OptionContainer" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -349.0
+offset_right = -13.0
+offset_bottom = 120.0
+grow_horizontal = 0
+alignment = 1
+
+[node name="Download" type="TextureButton" parent="OptionContainer" groups=["optionbuttons"]]
+show_behind_parent = true
+visibility_layer = 2
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+tooltip_text = "Download, update, or reinstall this homebrew or app."
+focus_neighbor_right = NodePath("../Settings")
+focus_previous = NodePath("../..")
+texture_normal = ExtResource("6_jiri4")
+texture_pressed = ExtResource("7_jfahr")
+texture_disabled = ExtResource("9_k7s6i")
+texture_focused = ExtResource("8_gbx3r")
+
+[node name="Settings" type="TextureButton" parent="OptionContainer" groups=["optionbuttons"]]
+show_behind_parent = true
+visibility_layer = 2
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+tooltip_text = "Change the settings for this app or plugin"
+focus_neighbor_left = NodePath("../Download")
+focus_neighbor_right = NodePath("../Delete")
+focus_previous = NodePath("../..")
+texture_normal = ExtResource("10_k4y2k")
+texture_pressed = ExtResource("11_v2j5h")
+texture_focused = ExtResource("8_gbx3r")
+
+[node name="Delete" type="TextureButton" parent="OptionContainer" groups=["optionbuttons"]]
+show_behind_parent = true
+visibility_layer = 2
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+tooltip_text = "Uninstall this app or plugin"
+focus_neighbor_left = NodePath("../Settings")
+focus_previous = NodePath("../..")
+texture_normal = ExtResource("12_57d8c")
+texture_pressed = ExtResource("13_52uts")
+texture_focused = ExtResource("8_gbx3r")
+
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]
+[connection signal="focus_exited" from="OptionContainer/Download" to="." method="_on_download_focus_exited"]
+[connection signal="focus_exited" from="OptionContainer/Settings" to="." method="_on_settings_focus_exited"]
+[connection signal="focus_exited" from="OptionContainer/Delete" to="." method="_on_delete_focus_exited"]
