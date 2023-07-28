@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BrewInfo" load_steps=2 format=3 uid="uid://c05ppymvd68fl"]
+
+[ext_resource type="Script" path="res://Scripts/BrewInfo.gd" id="1_1xe2t"]
+
+[resource]
+script = ExtResource("1_1xe2t")
+title = "Title"
+description = "Description"
+details = "Details"
+Information = {}
