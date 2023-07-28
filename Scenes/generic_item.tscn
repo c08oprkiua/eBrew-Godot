@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhtdfrq8tvh7e"]
+[gd_scene load_steps=16 format=3 uid="uid://dhtdfrq8tvh7e"]
 
 [ext_resource type="ButtonGroup" uid="uid://bogh5ks6jbxtr" path="res://Scripts/MenuItems.tres" id="1_ac1hd"]
 [ext_resource type="Texture2D" uid="uid://b0dtvemyftf4q" path="res://Assets/selectedpreview.png" id="2_ac6vk"]
 [ext_resource type="Texture2D" uid="uid://b74mljkkvsr43" path="res://Assets/selectedmenu.png" id="3_tcd7q"]
-[ext_resource type="Texture2D" uid="uid://cs42pg8rjgcy2" path="res://Assets/Focusedmenu.png" id="4_6cycl"]
-[ext_resource type="Script" path="res://Scripts/MenuControlF.gd" id="5_idhyh"]
+[ext_resource type="Texture2D" uid="uid://cs42pg8rjgcy2" path="res://OldAssets/Focusedmenu.png" id="4_6cycl"]
+[ext_resource type="Script" path="res://Scripts/MenuControl.gd" id="5_idhyh"]
+[ext_resource type="Resource" uid="uid://c05ppymvd68fl" path="res://TRESfiles/BrewData.tres" id="6_jcf00"]
 [ext_resource type="Texture2D" uid="uid://bg06aung4an3v" path="res://Assets/DLbrew.png" id="6_jiri4"]
 [ext_resource type="Texture2D" uid="uid://xops4w1owkk0" path="res://Assets/gotbrew.png" id="7_jfahr"]
 [ext_resource type="Texture2D" uid="uid://dch4orgx3tpt" path="res://Assets/focusoverlay.png" id="8_gbx3r"]
@@ -31,6 +32,7 @@ texture_hover = ExtResource("4_6cycl")
 texture_focused = ExtResource("4_6cycl")
 stretch_mode = 0
 script = ExtResource("5_idhyh")
+data = ExtResource("6_jcf00")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -49,18 +51,14 @@ offset_bottom = 112.0
 [node name="Title" type="Label" parent="InfoContainer"]
 layout_mode = 2
 size_flags_vertical = 2
-text = "Homebrew Text"
+text = "If you see this at runtime, something is wrong"
 label_settings = SubResource("LabelSettings_80tpv")
 text_overrun_behavior = 3
 
 [node name="Description" type="RichTextLabel" parent="InfoContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "This is filler text for a homebrew app
-
-Filler text pt 1
-
-Filler text pt 2"
+text = "If you see this at runtime, something is wrong"
 fit_content = true
 scroll_following = true
 autowrap_mode = 2
