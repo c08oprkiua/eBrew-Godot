@@ -1,12 +1,16 @@
 extends Node
-@onready var genericitem = preload("res://Scenes/generic_item.tscn")
-
-@export var list: int = 10
+var genericitem = preload("res://Scenes/generic_item.tscn")
 var x: int = 0
-# Called when the node enters the scene tree for the first time.
-func _ready():
+@export var data : BrewInfo
+
+func _on_list_load_pressed():
+	data.JSONdecoding()
+	var list = data.Information.packages.size()
+	print(data.Information.packages.size())
 	while x < list:
-		add_child(genericitem.instantiate(1))
+		print("Number ", x ,": ", data.Information.packages[x].title)
+		SignalBox.emit_signal("InitDir", x)
+		var listing = genericitem.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
+		add_child(listing)
 		x = x + 1
-	
 
