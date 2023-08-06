@@ -7,15 +7,21 @@ This is a work in progress recreation of https://gbatemp.net/threads/wii-u-new-h
 
 As well as recreating the original concept, I've also made some minor changes. So far, this includes custom background image support (put a `background.png` in the `Userfiles` folder.)
 
+To run this, download the files into a folder and then then add that folder to your project list in Godot (4.1). Compiled version support is currently not functional, but I am going to add it later
+
 # To-do
->add downloading homebrews,
->homebrew launcher functionality,
->impliment download progress bar... somewhere,
->impliment a settings screen (override custom background/bgm, auto-load HBAS, set download directory, etc.),
+add downloading homebrews
+homebrew launcher functionality
+impliment download progress bar... somewhere
+impliment a settings screen (override custom background/bgm, auto-load HBAS, set download directory, etc.)
+compatibility for compliled versions
+
+# Possible future features
+custom background music
+FTP transfer to Wii U/Switch
 
 # Known bugs
 Item 0 in the HBAS repo currently doesn't load, and instead, at the very bottom of the in-app list, is an empty item that will crash the app when focused. 
 
 PS: If you happen to have the orignal assets of the mockup, let me know and/or make a pull request to add them to the repo, because right now I'm just working with assets I edited out of the few screenshots posted in the above GBATemp thread.
 
-To run this, download the files into a folder and then then add that folder to your project list in Godot (4.1)
