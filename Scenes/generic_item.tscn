@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://dhtdfrq8tvh7e"]
 
-[ext_resource type="ButtonGroup" uid="uid://bogh5ks6jbxtr" path="res://Scripts/MenuItems.tres" id="1_ac1hd"]
+[ext_resource type="ButtonGroup" uid="uid://bogh5ks6jbxtr" path="res://TRESfiles/MenuItems.tres" id="1_f31cj"]
 [ext_resource type="Texture2D" uid="uid://b0dtvemyftf4q" path="res://Assets/selectedpreview.png" id="2_ac6vk"]
 [ext_resource type="Texture2D" uid="uid://b74mljkkvsr43" path="res://Assets/selectedmenu.png" id="3_tcd7q"]
 [ext_resource type="Texture2D" uid="uid://cs42pg8rjgcy2" path="res://OldAssets/Focusedmenu.png" id="4_6cycl"]
@@ -18,12 +18,11 @@
 [sub_resource type="LabelSettings" id="LabelSettings_80tpv"]
 
 [node name="GenericItem" type="TextureButton"]
-clip_children = 2
 layout_direction = 1
 size_flags_horizontal = 10
 size_flags_vertical = 2
 toggle_mode = true
-button_group = ExtResource("1_ac1hd")
+button_group = ExtResource("1_f31cj")
 shortcut_feedback = false
 shortcut_in_tooltip = false
 texture_normal = ExtResource("2_ac6vk")
@@ -34,25 +33,20 @@ stretch_mode = 0
 script = ExtResource("5_idhyh")
 data = ExtResource("6_jcf00")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 272.0
-offset_bottom = 112.0
-
 [node name="InfoContainer" type="VSplitContainer" parent="."]
 layout_mode = 1
 offset_left = 296.0
 offset_top = 8.0
 offset_right = 632.0
 offset_bottom = 112.0
+dragger_visibility = 2
 
 [node name="Title" type="Label" parent="InfoContainer"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 0
 text = "If you see this at runtime, something is wrong"
 label_settings = SubResource("LabelSettings_80tpv")
+justification_flags = 162
 text_overrun_behavior = 3
 
 [node name="Description" type="RichTextLabel" parent="InfoContainer"]
@@ -116,8 +110,22 @@ texture_normal = ExtResource("12_57d8c")
 texture_pressed = ExtResource("13_52uts")
 texture_focused = ExtResource("8_gbx3r")
 
-[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[node name="ItemIcon" type="TextureRect" parent="."]
+show_behind_parent = true
+clip_contents = true
+layout_mode = 1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 280.0
+offset_bottom = 112.0
+expand_mode = 2
+stretch_mode = 6
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="toggled" from="." to="." method="_on_toggled"]
+[connection signal="focus_entered" from="OptionContainer/Download" to="." method="_on_download_focus_entered"]
 [connection signal="focus_exited" from="OptionContainer/Download" to="." method="_on_download_focus_exited"]
+[connection signal="focus_entered" from="OptionContainer/Settings" to="." method="_on_settings_focus_entered"]
 [connection signal="focus_exited" from="OptionContainer/Settings" to="." method="_on_settings_focus_exited"]
+[connection signal="focus_entered" from="OptionContainer/Delete" to="." method="_on_delete_focus_entered"]
 [connection signal="focus_exited" from="OptionContainer/Delete" to="." method="_on_delete_focus_exited"]
