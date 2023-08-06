@@ -27,14 +27,17 @@ stretch_mode = 5
 
 [node name="Tab" type="TextureRect" parent="."]
 clip_contents = true
-offset_top = 16.0
-offset_right = 1152.0
-offset_bottom = 80.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 576.0
+offset_bottom = 64.0
+grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("3_xl0fn")
 expand_mode = 3
-stretch_mode = 2
 
 [node name="BrewMusic" type="AudioStreamPlayer" parent="."]
 
@@ -47,21 +50,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_uyxk3")
 
-[node name="RepoLoad" type="Button" parent="CoreUI"]
-layout_mode = 0
-offset_left = 136.0
-offset_top = 33.0
-offset_right = 304.0
-offset_bottom = 64.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CoreUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -551.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="RepoLoad" type="Button" parent="CoreUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 text = "Click to download HBAS information"
 
-[node name="ListLoad" type="Button" parent="CoreUI"]
-layout_mode = 0
-offset_left = 480.0
-offset_top = 32.0
-offset_right = 713.0
-offset_bottom = 63.0
-text = "Click to load HBAS repository"
+[node name="ListLoad" type="Button" parent="CoreUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Click to (re)load HBAS repository"
 
 [node name="ScreenMargins" type="MarginContainer" parent="CoreUI"]
 layout_mode = 1
@@ -94,10 +102,9 @@ layout_mode = 2
 
 [node name="BrewLore" type="RichTextLabel" parent="CoreUI/ScreenMargins/ScreenSplit/InfoContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "THis is filler text. fill this with the full decription of the homebrew. This text needs to be long enough to wrap into the next line over a couple of times so that the developers know where the edges of the otherwise invisible textbox are"
-scroll_following = true
+bbcode_enabled = true
+structured_text_bidi_override = 1
 
 [node name="ListContainer" type="ScrollContainer" parent="CoreUI/ScreenMargins/ScreenSplit"]
 layout_mode = 2
@@ -106,13 +113,18 @@ follow_focus = true
 vertical_scroll_mode = 2
 
 [node name="ListMaker" type="VBoxContainer" parent="CoreUI/ScreenMargins/ScreenSplit/ListContainer"]
-layout_direction = 3
+layout_direction = 2
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
 size_flags_vertical = 3
 script = ExtResource("2_b28yp")
 data = ExtResource("3_nuu3l")
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_top = 16.0
+offset_right = 1152.0
+offset_bottom = 80.0
+
 [connection signal="request_completed" from="StoreFetch" to="StoreFetch" method="_on_request_completed"]
-[connection signal="pressed" from="CoreUI/RepoLoad" to="StoreFetch" method="_on_repo_load_pressed"]
-[connection signal="pressed" from="CoreUI/ListLoad" to="CoreUI/ScreenMargins/ScreenSplit/ListContainer/ListMaker" method="_on_list_load_pressed"]
+[connection signal="pressed" from="CoreUI/HBoxContainer/RepoLoad" to="StoreFetch" method="_on_repo_load_pressed"]
+[connection signal="pressed" from="CoreUI/HBoxContainer/ListLoad" to="CoreUI/ScreenMargins/ScreenSplit/ListContainer/ListMaker" method="_on_list_load_pressed"]
