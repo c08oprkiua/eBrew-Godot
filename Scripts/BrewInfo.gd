@@ -8,10 +8,10 @@ class_name BrewInfo
 
 func JSONdecoding():
 	print("Attempting to load saved repo...")
-	if FileAccess.file_exists("res://Userfiles/repo.json"):
-		var raw = FileAccess.get_file_as_string("res://Userfiles/repo.json")
+	if FileAccess.file_exists("user://repo.json"):
+		var raw = FileAccess.get_file_as_string("user://repo.json")
 		var repo = JSON.parse_string(raw)
 		Information = repo
 		print("Repo file decoded")
 	else:
-		print("Repo file not present")
+		OS.alert("The repo.json file could not be found","Repo file not present")
