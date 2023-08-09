@@ -3,25 +3,33 @@ extends VSplitContainer
 @onready var brewlore = $BrewLore
 @onready var brewicon = $IconCorrector/BrewIcon
 @export var data : BrewInfo
+var settingswindow = preload("res://Scenes/settings.tscn")
+
+@onready var localx
+var empty
 
 func _ready():
 	SignalBox.connect("Thisitem", updateinfo)
-	SignalBox.connect("Okaytoloadimg", changeicon)
+	SignalBox.connect("Processedicon", updooticon)
 
 func updateinfo(arg1):
-	changetext(arg1)
-	changeicon(arg1)
+	localx = arg1
+	changetext()
+	#I have no clue why, but passing this empty var makes it update properly
+	updooticon(empty)
 
-func changetext(arg1):
-	brewlore.text = data.Information.packages[arg1].details
-	var appname = data.Information.packages[arg1].name
+func changetext():
+	brewlore.text = data.Information.packages[localx].details.replace("\\n", "\n")
+	#credit to @traceentertains on Discord for figuring out how to get the text to format properly
 
-func changeicon(arg1):
-	var appname = data.Information.packages[arg1].name
-	if FileAccess.file_exists("res://Userfiles/Icons/"+appname+".png"):
-		var texture = Image.load_from_file("res://Userfiles/Icons/"+appname+".png")
-		var icon = ImageTexture.create_from_image(texture)
-		$IconCorrector/BrewIcon.set_texture(icon)
+func updooticon(arg1):
+	$IconCorrector/BrewIcon.set_texture(data.Icon)
+
+func _on_settings_pressed():
+		#WIP check for a child so it doesn't load infinite settings windows on every press
+	data.filesyscheck()
+	print($BrewLore/Settings.get_child_count())
+	if $BrewLore/Settings.get_child_count() > 0:
+		print($BrewLore/Settings.get_children())
 	else:
-		SignalBox.emit_signal("DLicon", arg1)
-
+		add_child(settingswindow.instantiate())

@@ -2,24 +2,29 @@ extends HTTPRequest
 
 @export var data : BrewInfo
 @onready var store_fetch = $"."
+var localx
 
 func _ready():
-	SignalBox.connect("Thisitem", downloadicon)
 	SignalBox.connect("DLicon", downloadicon)
+	SignalBox.connect("Thisitem", downloadicon)
+	SignalBox.connect("StartRepoFetch", StartRepoFetch)
 
-func _on_repo_load_pressed():
-	store_fetch.set_download_file("user://repo.json")
+func StartRepoFetch():
+	store_fetch.set_download_file(data.UserFiles+"repo.json")
 	store_fetch.request("https://wiiu.cdn.fortheusers.org/repo.json")
 	print("HBAS Requested")
 
-func _on_request_completed(result, response_code, headers, body):
-	SignalBox.emit_signal("Okaytoloadimg")
+func _on_request_completed(_result, _response_code, _headers, _body):
+	SignalBox.emit_signal("Downloadcomplete")
 	print("Request completed")
+	#Future internal feature: If this node is currently processing a request, it
+	#will make a child of itself, that child takes the request, and then when said
+	#child is done, it self deletes
 
-func downloadicon(arg1):
-	var appname = data.Information.packages[arg1].name
-	if not FileAccess.file_exists("res://Userfiles/Icons/"+appname+".png"):
+func downloadicon(ent):
+	localx = ent
+	if not FileAccess.file_exists(data.UserFiles+"Icons/"+data.appname+".png"):
 		print("Downloading Icon...")
-		store_fetch.set_download_file("res://Userfiles/Icons/"+appname+".png")
-		store_fetch.request("https://wiiubru.com/appstore/packages/"+appname+"/icon.png")
+		store_fetch.set_download_file(data.UserFiles+"/Icons/"+data.appname+".png")
+		store_fetch.request("https://wiiubru.com/appstore/packages/"+data.appname+"/icon.png")
 		print("HBAS Icon Requested")

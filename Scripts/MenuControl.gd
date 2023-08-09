@@ -9,33 +9,35 @@ extends TextureButton
 @onready var download = $OptionContainer/Download
 @onready var settings = $OptionContainer/Settings
 @onready var brewicon = $ItemIcon
-@export var data : BrewInfo
-@onready var x
-
-signal FocusCheck
+@export var data: BrewInfo
+@onready var localx
 
 func _ready():
 	closebutton()
-	SignalBox.connect("InitDir",changetext, 4)
+	SignalBox.connect("InitDir",setinfo, 4)
+	SignalBox.connect("Thisitem", focuscheck)
+	SignalBox.connect("Processedicon", updooticon)
+	SignalBox.connect("Downloadcomplete", IsThisMyIcon)
 
-func changetext(arg1):
-	brewname.text = data.Information.packages[arg1].title
-	brewdetails.text = data.Information.packages[arg1].description
-	x = arg1
-	changeicon(x)
+func setinfo(arg1):
+	localx = arg1
+	changetext()
+	data.changeicon(localx)
 
-func changeicon(x):
-	var appname = data.Information.packages[x].name
-	if FileAccess.file_exists("res://Userfiles/Icons/"+appname+".png"):
-		var texture = Image.load_from_file("res://Userfiles/Icons/"+appname+".png")
-		var icon = ImageTexture.create_from_image(texture)
-		brewicon.set_texture(icon)
-		print(appname+" has icon")
-	else:
-		print(appname+" has no icon")
+func IsThisMyIcon():
+	data.changeicon(localx)
 
-#Changes if the info or options are on screen based on what state
-# the button is when pressed.
+func updooticon(arg1):
+	if is_same(localx, arg1):
+		brewicon.set_texture(data.Icon)
+		SignalBox.disconnect("Processedicon", updooticon)
+		SignalBox.disconnect("Downloadcomplete", IsThisMyIcon)
+
+func changetext():
+	brewname.text = data.Information.packages[localx].title
+	brewdetails.text = data.Information.packages[localx].description
+
+@warning_ignore("shadowed_variable_base_class")
 func _on_toggled(button_pressed):
 	if button_pressed:
 		brewinfo.visible= false
@@ -44,15 +46,8 @@ func _on_toggled(button_pressed):
 	elif not button_pressed:
 		closebutton()
 
-func focuscheck():
-	var focusdownload = download.has_focus()
-	var focussetting = settings.has_focus()
-	var focusdelete = delete.has_focus()
-	var focusself = self.has_focus()
-	if focusdownload or focusdelete or focussetting or focusself:
-		print("Check success")
-	else:
-		print("Check failed")
+func focuscheck(arg1):
+	if not is_same(arg1, localx):
 		genericitem.set_pressed(false)
 		options.visible = false
 
@@ -60,6 +55,16 @@ func closebutton():
 		brewinfo.visible = true
 		options.visible = false
 
+func whenfocus():
+	data.updatevars(localx)
+	SignalBox.emit_signal("Thisitem", localx)
+	if FileAccess.file_exists(data.UserFiles+"Icons/"+data.appname+".png"):
+		data.changeicon(localx)
+	else:
+		SignalBox.emit_signal("DLicon", localx)
+
 func _on_focus_entered():
-	SignalBox.emit_signal("Thisitem", x)
-	changeicon(x)
+	whenfocus()
+
+func _on_mouse_entered():
+	whenfocus()
