@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_1xe2t")
-title = "Title"
-description = "Description"
-details = "Details"
 Information = {}
+UserDirectory = ""
+setautoload = false
+UserFiles = "res://Testfolder/"
