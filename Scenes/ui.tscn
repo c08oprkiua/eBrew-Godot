@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ge0j4vxpnf0"]
+[gd_scene load_steps=11 format=3 uid="uid://ge0j4vxpnf0"]
 
 [ext_resource type="Script" path="res://Scripts/StageSet.gd" id="1_ngmwi"]
 [ext_resource type="Script" path="res://Scripts/RepoListLoad.gd" id="2_b28yp"]
@@ -8,9 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://d3exvvwel0tyg" path="res://Assets/tab2.png" id="3_xl0fn"]
 [ext_resource type="Theme" uid="uid://b6g3beayj4pv5" path="res://TRESfiles/margin_presets.tres" id="5_uonnr"]
 [ext_resource type="Script" path="res://Scripts/InfoControl.gd" id="7_iy6bp"]
+[ext_resource type="Texture2D" uid="uid://b8voeuv7ylkuj" path="res://Assets/settings.png" id="8_ew6f3"]
+[ext_resource type="Texture2D" uid="uid://dch4orgx3tpt" path="res://Assets/focusoverlay.png" id="9_4q6o0"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_ngmwi")
+data = ExtResource("3_nuu3l")
 
 [node name="StoreFetch" type="HTTPRequest" parent="."]
 script = ExtResource("2_u0y5e")
@@ -24,6 +27,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 5
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_top = 16.0
+offset_right = 1152.0
+offset_bottom = 80.0
 
 [node name="Tab" type="TextureRect" parent="."]
 clip_contents = true
@@ -49,27 +57,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_uyxk3")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CoreUI"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -551.0
-offset_bottom = 40.0
-grow_horizontal = 0
-
-[node name="RepoLoad" type="Button" parent="CoreUI/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "Click to download HBAS information"
-
-[node name="ListLoad" type="Button" parent="CoreUI/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "Click to (re)load HBAS repository"
 
 [node name="ScreenMargins" type="MarginContainer" parent="CoreUI"]
 layout_mode = 1
@@ -106,6 +93,21 @@ size_flags_vertical = 3
 bbcode_enabled = true
 structured_text_bidi_override = 1
 
+[node name="Settings" type="TextureButton" parent="CoreUI/ScreenMargins/ScreenSplit/InfoContainer/BrewLore"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+action_mode = 0
+texture_normal = ExtResource("8_ew6f3")
+texture_focused = ExtResource("9_4q6o0")
+
 [node name="ListContainer" type="ScrollContainer" parent="CoreUI/ScreenMargins/ScreenSplit"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -120,11 +122,5 @@ size_flags_vertical = 3
 script = ExtResource("2_b28yp")
 data = ExtResource("3_nuu3l")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_top = 16.0
-offset_right = 1152.0
-offset_bottom = 80.0
-
 [connection signal="request_completed" from="StoreFetch" to="StoreFetch" method="_on_request_completed"]
-[connection signal="pressed" from="CoreUI/HBoxContainer/RepoLoad" to="StoreFetch" method="_on_repo_load_pressed"]
-[connection signal="pressed" from="CoreUI/HBoxContainer/ListLoad" to="CoreUI/ScreenMargins/ScreenSplit/ListContainer/ListMaker" method="_on_list_load_pressed"]
+[connection signal="pressed" from="CoreUI/ScreenMargins/ScreenSplit/InfoContainer/BrewLore/Settings" to="CoreUI/ScreenMargins/ScreenSplit/InfoContainer" method="_on_settings_pressed"]
