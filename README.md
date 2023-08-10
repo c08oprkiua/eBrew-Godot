@@ -10,7 +10,7 @@ Until Godot gets ported to Wii U, this project will be limited to Godot-compatib
 As well as recreating the original concept, I've also made some minor changes. So far, this includes custom background image support (put a `background.png` in the `Userfiles` folder.)
 *Note: This is currently nonfunctional while settings are being implemented
 
-To run this, download the files into a folder and then then add that folder to your project list in Godot (4.1). Compiled version support is currently not functional, but I am going to add it later
+To run this, download the files into a folder and then then add that folder to your project list in Godot (4.1), or run one of the pre-compiled versions present in the releases tab
 
 # To-do
 add downloading homebrews
