@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dbn8wrbug8rf8"]
+
+[ext_resource type="StyleBox" uid="uid://cnaio5n0fqfau" path="res://styleboxflat color0f5080.tres" id="1_juix5"]
+[ext_resource type="StyleBox" uid="uid://ch08mfgjrbcsp" path="res://styleboxflat color052d4b.tres" id="2_ictph"]
+[ext_resource type="StyleBox" uid="uid://ce6p8wyg50x3f" path="res://styleboxflat color_021a2e.tres" id="2_nf0ij"]
+[ext_resource type="StyleBox" uid="uid://dkt7vkwgh5wcl" path="res://styleboxflat color021628.tres" id="4_fbgx5"]
+
+[resource]
+TabContainer/styles/panel = ExtResource("1_juix5")
+TabContainer/styles/tab_disabled = null
+TabContainer/styles/tab_hovered = null
+TabContainer/styles/tab_selected = ExtResource("2_ictph")
+TabContainer/styles/tab_unselected = ExtResource("2_nf0ij")
+TabContainer/styles/tabbar_background = ExtResource("4_fbgx5")
