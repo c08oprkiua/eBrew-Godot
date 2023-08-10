@@ -29,7 +29,7 @@ custom background music
 
 FTP transfer to Wii U/Switch
 
-(PC) Homebrew Launcher launching features launch Cemu
+(PC) HBL launching calls launch Cemu
 
 
 # Known bugs
