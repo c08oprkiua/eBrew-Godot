@@ -29,6 +29,8 @@ custom background music
 
 FTP transfer to Wii U/Switch
 
+(PC) Homebrew Launcher launching features launch Cemu
+
 
 # Known bugs
 If you scroll too fast past an app that doesn't have an icon, there's a small chance that it will not load its icon on the menu side once it is downloaded. This is fixed upon a reboot. I could fix this, but right now it seems like a very niche and harmless thing to impliment some extra checks for.
