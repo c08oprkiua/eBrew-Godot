@@ -6,7 +6,7 @@ func _ready():
 	data.filesyscheck()
 	#Loading the audio buses is a leftover from (now delayed) custom BGM implimentation
 	#AudioServer.set_bus_layout(load("res://TRESfiles/AudioBusLayout.tres"))
-	#loadbackgroundimage()
+	loadbackgroundimage()
 	AutoBootBehaviors()
 
 func AutoBootBehaviors():
@@ -24,9 +24,11 @@ func AutoBootBehaviors():
 
 func loadbackgroundimage():
 	var bg
-	if FileAccess.file_exists(data.UserDirectory+"/background.png"):
-		bg = Image.load_from_file(data.UserDirectory+"/background.png")
-		#later on this will directly load an image from a directory in the cfg file
+	if data.setini.get_value("AppBehavior", "LoadCustomBackgroundImage"):
+		if FileAccess.file_exists(data.UserDirectory+"/background.png"):
+			bg = Image.load_from_file(data.UserDirectory+"/background.png")
+			#later on this will directly load an image from a directory in the cfg file
+			#Thus the calls to "UserDirectory"
 	else:
 		bg = Image.load_from_file("res://Assets/eBrewSplash.png")
 	$BrewBackground.set_texture(ImageTexture.create_from_image(bg))

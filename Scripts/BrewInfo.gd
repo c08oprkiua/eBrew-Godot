@@ -2,12 +2,11 @@ extends Resource
 class_name BrewInfo
 
 #Information is empty, gets filled at runtime with the repo info
-@export var Information = {}
-@export var UserDirectory: String
-@export var setautoload: bool
+var Information = {}
 var setini = ConfigFile.new()
-@export var UserFiles = "res://Userfiles/"
+var UserFiles = "user://Userfiles/"
 var inifilepath = UserFiles+"ebrewsettings.ini"
+var DefaultDownloadDir = OS.get_executable_path().get_base_dir() #For exported builds
 var Icon
 #Don't access these outside of this script
 var x
@@ -42,7 +41,6 @@ func filesyscheck():
 		print("Making "+UserFiles+" folder")
 		DirAccess.make_dir_absolute(UserFiles)
 	if not DirAccess.dir_exists_absolute(UserFiles+"Icons/"):
-		print("Making icon folder")
 		print("Making "+UserFiles+"Icons/ folder")
 		
 		DirAccess.make_dir_absolute(UserFiles+"/Icons/")

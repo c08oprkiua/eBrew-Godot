@@ -26,10 +26,8 @@ func updooticon(arg1):
 	$IconCorrector/BrewIcon.set_texture(data.Icon)
 
 func _on_settings_pressed():
-		#WIP check for a child so it doesn't load infinite settings windows on every press
 	data.filesyscheck()
-	print($BrewLore/Settings.get_child_count())
-	if $BrewLore/Settings.get_child_count() > 0:
-		print($BrewLore/Settings.get_children())
+	if get_child_count() > 2:
+		get_child(2).show()
 	else:
-		add_child(settingswindow.instantiate())
+		add_child(settingswindow.instantiate(),false, Node.INTERNAL_MODE_DISABLED)
