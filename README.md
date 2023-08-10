@@ -3,7 +3,9 @@ The eBrew mockup brought to life in Godot 4.1
 
 Disclaimer: This project is not officially associated with the original designers/artists behind the eBrew concept
 
-This is a work in progress recreation of https://gbatemp.net/threads/wii-u-new-hbl-gui-concept-new-name-ebrew-store.602363/ which aims for full recreation of all the (visibly deductable) intended functionality visible in the mockup images (Homebrew Launcher + Homebrew App Store). Until Godot gets ported to Wii U, this project will be limited to desktop platforms as a frontend for the Homebrew App Store.
+This is a work in progress recreation of https://gbatemp.net/threads/wii-u-new-hbl-gui-concept-new-name-ebrew-store.602363/ which aims for full recreation of all the (visibly deductable) intended functionality in the mockup images (Homebrew Launcher + Homebrew App Store).
+
+Until Godot gets ported to Wii U, this project will be limited to Godot-compatible platforms as a frontend for the Wii U Homebrew App Store.
 
 As well as recreating the original concept, I've also made some minor changes. So far, this includes custom background image support (put a `background.png` in the `Userfiles` folder.)
 *Note: This is currently nonfunctional while settings are being implemented
