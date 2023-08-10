@@ -42,6 +42,6 @@ To run this, download the files into a folder and then then add that folder to y
 # Known bugs
 * All: If you scroll too fast past an app that doesn't have an icon, there's a small chance that it will not load its icon on the menu side once it is downloaded. This is fixed upon a reboot. I could fix this, but right now it seems like a very niche and harmless thing to impliment some extra checks for.
 
-* Windows: Downloading the HBAS repository works, however loading it does not
+* Windows: Some app asset loading is broken (affects default background image, loading repo, etc.)
 
 PS: If you happen to have the orignal assets for the mockup, let me know and/or make a pull request to add them to the repo, because right now I'm just working with assets I photoshopped out of the few screenshots posted in the above GBATemp thread.
