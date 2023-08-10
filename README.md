@@ -29,7 +29,7 @@ custom background music
 
 FTP transfer to Wii U/Switch
 
-(PC) HBL launching calls launch Cemu
+(PC) HBL launching calls launch the app in Cemu
 
 
 # Known bugs
