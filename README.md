@@ -31,6 +31,7 @@ FTP transfer to Wii U/Switch
 
 (PC) HBL launching calls launch the app in Cemu
 
+Other appstores (Switch HBAS, Open Shop Channel, Universal Updater, etc.)
 
 # Known bugs
 If you scroll too fast past an app that doesn't have an icon, there's a small chance that it will not load its icon on the menu side once it is downloaded. This is fixed upon a reboot. I could fix this, but right now it seems like a very niche and harmless thing to impliment some extra checks for.
