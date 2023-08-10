@@ -13,33 +13,35 @@ As well as recreating the original concept, I've also made some minor changes. S
 To run this, download the files into a folder and then then add that folder to your project list in Godot (4.1), or run one of the pre-compiled versions present in the releases tab
 
 # To-do
-add downloading homebrews
+* Add downloading and uninstalling homebrew
 
-homebrew launcher functionality
+* homebrew launcher functionality (loading information on locally saved homebrew)
 
-impliment download progress bar... somewhere
+* impliment download progress bar...somewhere
 
-finish settings implementation
+* finish settings implementation
 
-finish compatibility for compliled versions:
+* finish compatibility for compliled versions:
 
-Linux: Done
+** Linux: Done
 
-Windows: Fix loading issues
+** Windows: Fix loading issues
 
-Android: Fix permissions
+** Android: Fix permissions
 
 
 # Possible future features
-Custom background music
+* Custom background music
 
-FTP transfer to Wii U/Switch
+* FTP transfer to Wii U/Switch
 
-(PC) HBL launching calls launch the app in Cemu
+* (PC) HBL launching calls launch the app in Cemu
 
-Other appstores (Switch HBAS, Open Shop Channel, Universal Updater, etc.)
+* Other appstores (Switch HBAS, Open Shop Channel, Universal Updater, etc.)
 
 # Known bugs
-If you scroll too fast past an app that doesn't have an icon, there's a small chance that it will not load its icon on the menu side once it is downloaded. This is fixed upon a reboot. I could fix this, but right now it seems like a very niche and harmless thing to impliment some extra checks for.
+* All: If you scroll too fast past an app that doesn't have an icon, there's a small chance that it will not load its icon on the menu side once it is downloaded. This is fixed upon a reboot. I could fix this, but right now it seems like a very niche and harmless thing to impliment some extra checks for.
+
+* Windows: Downloading the HBAS repository works, however loading it does not
 
 PS: If you happen to have the orignal assets for the mockup, let me know and/or make a pull request to add them to the repo, because right now I'm just working with assets I photoshopped out of the few screenshots posted in the above GBATemp thread.
