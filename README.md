@@ -23,7 +23,9 @@ finish settings implementation
 
 finish compatibility for compliled versions:
 Linux: Done
+
 Windows: Fix loading issues
+
 Android: Fix permissions
 
 
