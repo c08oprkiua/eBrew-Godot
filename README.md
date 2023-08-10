@@ -25,7 +25,7 @@ finish compatibility for compliled versions
 
 
 # Possible future features
-custom background music
+Custom background music
 
 FTP transfer to Wii U/Switch
 
