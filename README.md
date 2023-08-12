@@ -15,19 +15,21 @@ To run this, download the files into a folder and then then add that folder to y
 # To-do
 * Add downloading and uninstalling homebrew
 
-* homebrew launcher functionality (loading information on locally saved homebrew)
+* Homebrew launcher functionality (loading information on locally saved homebrew):
 
-* impliment download progress bar...somewhere
+* Implement download progress bar...somewhere
 
-* finish settings implementation
+* Finish settings implementation
+
+* Remake scroll bar for fixed visuals and functional usage
 
 * finish compatibility for compliled versions:
 
 ** Linux: Done
 
-** Windows: Fix loading issues
+** Windows: Done
 
-** Android: Fix permissions
+** Android: Fix loading issues, change user directories (it's storing userdata in a root access directory, I don't want that)
 
 
 # Possible future features
@@ -36,6 +38,8 @@ To run this, download the files into a folder and then then add that folder to y
 * FTP transfer to Wii U/Switch
 
 * (PC) HBL launching calls launch the app in Cemu
+
+* (PC) Using Wiiload to send homebrew to and launch homebrew on a real Wii U
 
 * Other appstores (Switch HBAS, Open Shop Channel, Universal Updater, etc.)
 
