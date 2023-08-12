@@ -48,4 +48,4 @@ To run this, download the files into a folder and then then add that folder to y
 
 * Windows: Some app asset loading is broken (affects default background image, loading repo, etc.)
 
-PS: If you happen to have the orignal assets for the mockup, let me know and/or make a pull request to add them to the repo, because right now I'm just working with assets I photoshopped out of the few screenshots posted in the above GBATemp thread.
+PS: Right now I'm just working with assets I photoshopped out of the few screenshots posted in the above GBATemp thread. If you have a copy of the original assets used in creating the mockups, or are skilled enough in digital art to recreate them from scratch, please let me know and/or make a pull request to add them to the repository.
