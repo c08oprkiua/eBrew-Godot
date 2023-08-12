@@ -15,7 +15,7 @@ To run this, download the files into a folder and then then add that folder to y
 # To-do
 * Add downloading and uninstalling homebrew
 
-* Homebrew launcher functionality (loading information on locally saved homebrew):
+* Homebrew launcher functionality (loading information on locally saved homebrew)
 
 * Implement download progress bar...somewhere
 
@@ -23,7 +23,7 @@ To run this, download the files into a folder and then then add that folder to y
 
 * Remake scroll bar for fixed visuals and functional usage
 
-* finish compatibility for compliled versions:
+* Finish compatibility for compliled versions:
 
 ** Linux: Done
 
