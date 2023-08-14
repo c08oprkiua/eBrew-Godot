@@ -7,8 +7,8 @@ This is a work in progress recreation of https://gbatemp.net/threads/wii-u-new-h
 
 Until Godot gets ported to Wii U, this project will be limited to Godot-compatible platforms (Linux, Windows, Android, etc.) as a frontend for the Wii U Homebrew App Store.
 
-As well as recreating the original concept, I've also made some minor changes. So far, this includes custom background image support (put a `background.png` in the `Userfiles` folder.)
-*Note: This is currently nonfunctional while settings are being implemented
+As well as recreating the original concept, I've also made some minor changes. So far, this includes: 
+* Custom background image support: Put a path to your file into the custom image setting's text box box in settings, press enter, then press save, and if the directory is valid, it will load that image as the background of the app on subsequent uses of the app.
 
 To run this, download the files into a folder and then then add that folder to your project list in Godot (4.1), or run one of the pre-compiled versions present in the releases tab
 
