@@ -1,0 +1,51 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://xdiggbnfliai"]
+
+[ext_resource type="StyleBox" uid="uid://c4yk026lr2xgi" path="res://TRESfiles/scrollgrabbyfocus.tres" id="1_d6wtd"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_sm3tf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1enij"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rae3h"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[resource]
+VScrollBar/icons/decrement = SubResource("ImageTexture_sm3tf")
+VScrollBar/icons/decrement_highlight = SubResource("ImageTexture_sm3tf")
+VScrollBar/icons/decrement_pressed = SubResource("ImageTexture_sm3tf")
+VScrollBar/icons/increment = SubResource("ImageTexture_sm3tf")
+VScrollBar/icons/increment_highlight = SubResource("ImageTexture_sm3tf")
+VScrollBar/icons/increment_pressed = SubResource("ImageTexture_sm3tf")
+VScrollBar/styles/grabber = ExtResource("1_d6wtd")
+VScrollBar/styles/grabber_highlight = ExtResource("1_d6wtd")
+VScrollBar/styles/grabber_pressed = ExtResource("1_d6wtd")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_1enij")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_rae3h")
