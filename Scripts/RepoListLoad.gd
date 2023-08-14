@@ -10,6 +10,9 @@ func InitialLoadList():
 	data.JSONdecoding()
 
 func ProceedLoadList():
+	if get_child_count() > 0:
+		for child in get_children():
+			remove_child(child)
 	var list = data.Information.packages.size()
 	for i in range(0, list):
 		add_child(genericitem.instantiate())

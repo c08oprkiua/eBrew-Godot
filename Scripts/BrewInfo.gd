@@ -7,15 +7,15 @@ var setini = ConfigFile.new()
 var UserFiles = "user://Userfiles/"
 var inifilepath = UserFiles+"ebrewsettings.ini"
 var DefaultDownloadDir = OS.get_executable_path().get_base_dir() #For exported builds
+var RepoDownloadDir = UserFiles+"repo.json"
 var Icon
-#Don't access these outside of this script
 var x
 var appname
 
 func JSONdecoding():
 	print("Attempting to load saved repo...")
-	if FileAccess.file_exists(UserFiles+"repo.json"):
-		var raw = FileAccess.get_file_as_string(UserFiles+"repo.json")
+	if FileAccess.file_exists(RepoDownloadDir):
+		var raw = FileAccess.get_file_as_string(RepoDownloadDir)
 		Information = JSON.parse_string(raw)
 		print("Repo file decoded")
 		SignalBox.emit_signal("SafeRepo")
@@ -37,11 +37,17 @@ func loadicon():
 	SignalBox.emit_signal("Processedicon", x)
 
 func filesyscheck():
+	#I'll return to this and make it a range function someday
 	if not DirAccess.dir_exists_absolute(UserFiles):
 		print("Making "+UserFiles+" folder")
 		DirAccess.make_dir_absolute(UserFiles)
 	if not DirAccess.dir_exists_absolute(UserFiles+"Icons/"):
 		print("Making "+UserFiles+"Icons/ folder")
-		
 		DirAccess.make_dir_absolute(UserFiles+"/Icons/")
-	print("File tree exists at "+UserFiles)
+	if not DirAccess.dir_exists_absolute(UserFiles+"Homebrew/"):
+		print("Making "+UserFiles+"Homebrew/ folder")
+		DirAccess.make_dir_absolute(UserFiles+"Homebrew/")
+	if not DirAccess.dir_exists_absolute(UserFiles+"Downloads/"):
+		print("Making "+UserFiles+"Downloads/ folder")
+		DirAccess.make_dir_absolute(UserFiles+"Downloads/")
+	print("File tree exists at "+UserFiles)	
