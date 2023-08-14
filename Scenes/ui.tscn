@@ -1,23 +1,29 @@
-[gd_scene load_steps=11 format=3 uid="uid://ge0j4vxpnf0"]
+[gd_scene load_steps=15 format=3 uid="uid://ge0j4vxpnf0"]
 
 [ext_resource type="Script" path="res://Scripts/StageSet.gd" id="1_ngmwi"]
 [ext_resource type="Script" path="res://Scripts/RepoListLoad.gd" id="2_b28yp"]
 [ext_resource type="Script" path="res://Scripts/InfoFetch.gd" id="2_u0y5e"]
 [ext_resource type="Theme" uid="uid://cbw4j15uc8slj" path="res://TRESfiles/clear_tabs.tres" id="2_uyxk3"]
+[ext_resource type="Resource" uid="uid://chgldtvrin1d2" path="res://TRESfiles/BetterHTTPRequest.tres" id="3_esxow"]
 [ext_resource type="Resource" uid="uid://c05ppymvd68fl" path="res://TRESfiles/BrewData.tres" id="3_nuu3l"]
 [ext_resource type="Texture2D" uid="uid://d3exvvwel0tyg" path="res://Assets/tab2.png" id="3_xl0fn"]
+[ext_resource type="Texture2D" uid="uid://t633xo01rk6l" path="res://Assets/tab3.png" id="5_6mjk5"]
 [ext_resource type="Theme" uid="uid://b6g3beayj4pv5" path="res://TRESfiles/margin_presets.tres" id="5_uonnr"]
 [ext_resource type="Script" path="res://Scripts/InfoControl.gd" id="7_iy6bp"]
 [ext_resource type="Texture2D" uid="uid://b8voeuv7ylkuj" path="res://Assets/settings.png" id="8_ew6f3"]
+[ext_resource type="Script" path="res://Scenes/DownloadProgress.gd" id="8_lhp1a"]
 [ext_resource type="Texture2D" uid="uid://dch4orgx3tpt" path="res://Assets/focusoverlay.png" id="9_4q6o0"]
+[ext_resource type="PackedScene" uid="uid://cyg17t1gkhndt" path="res://Scenes/NewScrollBar.tscn" id="12_r143i"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_ngmwi")
 data = ExtResource("3_nuu3l")
+NetworkBox = ExtResource("3_esxow")
 
 [node name="StoreFetch" type="HTTPRequest" parent="."]
 script = ExtResource("2_u0y5e")
 data = ExtResource("3_nuu3l")
+BetterDownloading = ExtResource("3_esxow")
 
 [node name="BrewBackground" type="TextureRect" parent="."]
 visibility_layer = 512
@@ -26,26 +32,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-stretch_mode = 5
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_top = 16.0
-offset_right = 1152.0
-offset_bottom = 80.0
-
-[node name="Tab" type="TextureRect" parent="."]
-clip_contents = true
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -576.0
-offset_right = 576.0
-offset_bottom = 64.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("3_xl0fn")
 expand_mode = 3
+stretch_mode = 3
 
 [node name="BrewMusic" type="AudioStreamPlayer" parent="."]
 
@@ -56,9 +44,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("2_uyxk3")
 
+[node name="DownloadProgress" type="TextureProgressBar" parent="CoreUI"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 75.0
+size_flags_vertical = 0
+allow_greater = true
+texture_under = ExtResource("3_xl0fn")
+texture_progress = ExtResource("5_6mjk5")
+tint_progress = Color(0, 0, 0, 0.329412)
+script = ExtResource("8_lhp1a")
+data = ExtResource("3_nuu3l")
+Client = ExtResource("3_esxow")
+
 [node name="ScreenMargins" type="MarginContainer" parent="CoreUI"]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,59 +72,68 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_uonnr")
 
-[node name="ScreenSplit" type="HSplitContainer" parent="CoreUI/ScreenMargins"]
+[node name="ScreenSplit" type="HBoxContainer" parent="CoreUI/ScreenMargins"]
 layout_mode = 2
-split_offset = -150
-dragger_visibility = 2
+alignment = 1
 
-[node name="InfoContainer" type="VSplitContainer" parent="CoreUI/ScreenMargins/ScreenSplit"]
+[node name="ScreenSplit2" type="HSplitContainer" parent="CoreUI/ScreenMargins/ScreenSplit"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
-dragger_visibility = 2
+split_offset = -140
+dragger_visibility = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CoreUI/ScreenMargins/ScreenSplit/ScreenSplit2"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
 script = ExtResource("7_iy6bp")
 data = ExtResource("3_nuu3l")
 
-[node name="IconCorrector" type="CenterContainer" parent="CoreUI/ScreenMargins/ScreenSplit/InfoContainer"]
+[node name="IconCorrector" type="CenterContainer" parent="CoreUI/ScreenMargins/ScreenSplit/ScreenSplit2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BrewIcon" type="TextureRect" parent="CoreUI/ScreenMargins/ScreenSplit/InfoContainer/IconCorrector"]
+[node name="BrewIcon" type="TextureRect" parent="CoreUI/ScreenMargins/ScreenSplit/ScreenSplit2/VBoxContainer/IconCorrector"]
 layout_mode = 2
+stretch_mode = 5
 
-[node name="BrewLore" type="RichTextLabel" parent="CoreUI/ScreenMargins/ScreenSplit/InfoContainer"]
+[node name="BrewLore" type="RichTextLabel" parent="CoreUI/ScreenMargins/ScreenSplit/ScreenSplit2/VBoxContainer"]
+clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
 structured_text_bidi_override = 1
 
-[node name="Settings" type="TextureButton" parent="CoreUI/ScreenMargins/ScreenSplit/InfoContainer/BrewLore"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="Settings" type="TextureButton" parent="CoreUI/ScreenMargins/ScreenSplit/ScreenSplit2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
 action_mode = 0
 texture_normal = ExtResource("8_ew6f3")
 texture_focused = ExtResource("9_4q6o0")
 
-[node name="ListContainer" type="ScrollContainer" parent="CoreUI/ScreenMargins/ScreenSplit"]
+[node name="ListContainer" type="ScrollContainer" parent="CoreUI/ScreenMargins/ScreenSplit/ScreenSplit2"]
 layout_mode = 2
 size_flags_horizontal = 3
 follow_focus = true
-vertical_scroll_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
 
-[node name="ListMaker" type="VBoxContainer" parent="CoreUI/ScreenMargins/ScreenSplit/ListContainer"]
+[node name="ListMaker" type="VBoxContainer" parent="CoreUI/ScreenMargins/ScreenSplit/ScreenSplit2/ListContainer"]
+clip_contents = true
 layout_direction = 2
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
 size_flags_vertical = 3
+alignment = 2
 script = ExtResource("2_b28yp")
 data = ExtResource("3_nuu3l")
 
+[node name="Background" parent="CoreUI/ScreenMargins/ScreenSplit" instance=ExtResource("12_r143i")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
 [connection signal="request_completed" from="StoreFetch" to="StoreFetch" method="_on_request_completed"]
-[connection signal="pressed" from="CoreUI/ScreenMargins/ScreenSplit/InfoContainer/BrewLore/Settings" to="CoreUI/ScreenMargins/ScreenSplit/InfoContainer" method="_on_settings_pressed"]
+[connection signal="pressed" from="CoreUI/ScreenMargins/ScreenSplit/ScreenSplit2/VBoxContainer/Settings" to="CoreUI/ScreenMargins/ScreenSplit/ScreenSplit2/VBoxContainer" method="_on_settings_pressed"]

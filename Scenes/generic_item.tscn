@@ -1,14 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhtdfrq8tvh7e"]
+[gd_scene load_steps=18 format=3 uid="uid://dhtdfrq8tvh7e"]
 
 [ext_resource type="ButtonGroup" uid="uid://bogh5ks6jbxtr" path="res://TRESfiles/MenuItems.tres" id="1_f31cj"]
 [ext_resource type="Texture2D" uid="uid://b0dtvemyftf4q" path="res://Assets/selectedpreview.png" id="2_ac6vk"]
 [ext_resource type="Texture2D" uid="uid://b74mljkkvsr43" path="res://Assets/selectedmenu.png" id="3_tcd7q"]
-[ext_resource type="Texture2D" uid="uid://cs42pg8rjgcy2" path="res://OldAssets/Focusedmenu.png" id="4_6cycl"]
+[ext_resource type="Texture2D" uid="uid://cpu2pil8b06n" path="res://Assets/hoveredpreview.png" id="4_kk18d"]
+[ext_resource type="Texture2D" uid="uid://tiyeil3mk77n" path="res://Assets/focusmenuoverlay.png" id="4_qaau7"]
 [ext_resource type="Script" path="res://Scripts/MenuControl.gd" id="5_idhyh"]
 [ext_resource type="Resource" uid="uid://c05ppymvd68fl" path="res://TRESfiles/BrewData.tres" id="6_jcf00"]
 [ext_resource type="Texture2D" uid="uid://bg06aung4an3v" path="res://Assets/DLbrew.png" id="6_jiri4"]
 [ext_resource type="Texture2D" uid="uid://xops4w1owkk0" path="res://Assets/gotbrew.png" id="7_jfahr"]
 [ext_resource type="Texture2D" uid="uid://dch4orgx3tpt" path="res://Assets/focusoverlay.png" id="8_gbx3r"]
+[ext_resource type="Resource" uid="uid://chgldtvrin1d2" path="res://TRESfiles/BetterHTTPRequest.tres" id="8_mapy2"]
 [ext_resource type="Texture2D" uid="uid://b61y52rl6jcev" path="res://Assets/failgotbrew.png" id="9_k7s6i"]
 [ext_resource type="Texture2D" uid="uid://dokg7u0mn18d7" path="res://Assets/tweakbrew.png" id="10_k4y2k"]
 [ext_resource type="Texture2D" uid="uid://da4hac0fxo48" path="res://Assets/selectedtweakbrew.png" id="11_v2j5h"]
@@ -27,11 +29,12 @@ shortcut_feedback = false
 shortcut_in_tooltip = false
 texture_normal = ExtResource("2_ac6vk")
 texture_pressed = ExtResource("3_tcd7q")
-texture_hover = ExtResource("4_6cycl")
-texture_focused = ExtResource("4_6cycl")
+texture_hover = ExtResource("4_kk18d")
+texture_focused = ExtResource("4_qaau7")
 stretch_mode = 0
 script = ExtResource("5_idhyh")
 data = ExtResource("6_jcf00")
+NetworkBox = ExtResource("8_mapy2")
 
 [node name="InfoContainer" type="VSplitContainer" parent="."]
 layout_mode = 1
@@ -114,9 +117,9 @@ texture_focused = ExtResource("8_gbx3r")
 show_behind_parent = true
 clip_contents = true
 layout_mode = 1
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 280.0
+offset_left = 13.0
+offset_top = 11.0
+offset_right = 275.0
 offset_bottom = 112.0
 expand_mode = 2
 stretch_mode = 6
@@ -124,9 +127,6 @@ stretch_mode = 6
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="toggled" from="." to="." method="_on_toggled"]
-[connection signal="focus_entered" from="OptionContainer/Download" to="." method="_on_download_focus_entered"]
-[connection signal="focus_exited" from="OptionContainer/Download" to="." method="_on_download_focus_exited"]
-[connection signal="focus_entered" from="OptionContainer/Settings" to="." method="_on_settings_focus_entered"]
-[connection signal="focus_exited" from="OptionContainer/Settings" to="." method="_on_settings_focus_exited"]
-[connection signal="focus_entered" from="OptionContainer/Delete" to="." method="_on_delete_focus_entered"]
-[connection signal="focus_exited" from="OptionContainer/Delete" to="." method="_on_delete_focus_exited"]
+[connection signal="pressed" from="OptionContainer/Download" to="." method="_on_download_pressed"]
+[connection signal="pressed" from="OptionContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="OptionContainer/Delete" to="." method="_on_delete_pressed"]
