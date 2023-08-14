@@ -13,24 +13,16 @@ As well as recreating the original concept, I've also made some minor changes. S
 To run this, download the files into a folder and then then add that folder to your project list in Godot (4.1), or run one of the pre-compiled versions present in the releases tab
 
 # To-do
-* Add downloading and uninstalling homebrew
-
+* Add unzipping downloaded homebrew to user defined folder
 * Homebrew launcher functionality (loading information on locally saved homebrew)
-
-* Implement download progress bar...somewhere
-
+* Complete download bar implementation
 * Finish settings implementation
-
-* Remake scroll bar for fixed visuals and functional usage
-
-* Finish compatibility for compliled versions:
-
-** Linux: Done
-
-** Windows: Done
-
-** Android: Fix loading issues, change user directories (it's storing userdata in a root access directory, I don't want that)
-
+  * Visually load user saved directories
+  * Implement directory save/check button functionality
+* Finish compatibility for compiled versions:
+  * Linux: Done
+  * Windows: Done(?)
+  * Android: Change user directories (it's storing userdata in a root access directory, I don't want that)
 
 # Possible future features
 * Custom background music
@@ -46,6 +38,6 @@ To run this, download the files into a folder and then then add that folder to y
 # Known bugs
 * All: If you scroll too fast past an app that doesn't have an icon, there's a small chance that it will not load its icon on the menu side once it is downloaded. This is fixed upon a reboot. I could fix this, but right now it seems like a very niche and harmless thing to impliment some extra checks for.
 
-* Windows: Some app asset loading is broken (affects default background image, loading repo, etc.)
+* All: On occasion, when downloading a homebrew, the app will freeze. I don't quite know what causes this, and it seems to just be the GUI, because the app usually finishes downloading in the background. I have some ideas as to what it is, but yeah, for now, just watch out for that. And it also might just be my computer, because Godot itself also freezes quite a lot on my computer, which seems to be a me-specific issue-
 
 PS: Right now I'm just working with assets I photoshopped out of the few screenshots posted in the above GBATemp thread. If you have a copy of the original assets used in creating the mockups, or are skilled enough in digital art to recreate them from scratch, please let me know and/or make a pull request to add them to the repository.
