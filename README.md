@@ -22,17 +22,13 @@ To run this, download the files into a folder and then then add that folder to y
 * Finish compatibility for compiled versions:
   * Linux: Done
   * Windows: Done(?)
-  * Android: Change user directories (it's storing userdata in a root access directory, I don't want that)
+  * Android: (The Android version will likely be scrapped as is, and will be replaced by some sort of re-adaptation for the UI for portrait screens)
 
 # Possible future features
 * Custom background music
-
 * FTP transfer to Wii U/Switch
-
 * (PC) HBL launching calls launch the app in Cemu
-
 * (PC) Using Wiiload to send homebrew to and launch homebrew on a real Wii U
-
 * Other appstores (Switch HBAS, Open Shop Channel, Universal Updater, etc.)
 
 # Known bugs
