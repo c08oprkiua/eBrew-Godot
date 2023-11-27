@@ -36,4 +36,6 @@ To run this, download the files into a folder and then then add that folder to y
 
 * All: On occasion, when downloading a homebrew, the app will freeze. I don't quite know what causes this, and it seems to just be the GUI, because the app usually finishes downloading in the background. I have some ideas as to what it is, but yeah, for now, just watch out for that. And it also might just be my computer, because Godot itself also freezes quite a lot on my computer, which seems to be a me-specific issue-
 
-PS: Right now I'm just working with assets I photoshopped out of the few screenshots posted in the above GBATemp thread. If you have a copy of the original assets used in creating the mockups, or are skilled enough in digital art to recreate them from scratch, please let me know and/or make a pull request to add them to the repository.
+PS: If you have a copy of the original assets used in creating the mockups, or are skilled enough in digital art to recreate them from scratch, please let me know and/or make a pull request to add them to the repository.
+
+If you have any questions, join my [Discord](https://discord.com/invite/Mu6YUEmerN)
