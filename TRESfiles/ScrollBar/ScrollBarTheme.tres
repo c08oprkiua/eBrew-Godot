@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://xdiggbnfliai"]
+
+[ext_resource type="StyleBox" uid="uid://djj27clyeq0ai" path="res://TRESfiles/ScrollBar/scrollbarBase.tres" id="1_wdhi1"]
+[ext_resource type="StyleBox" uid="uid://bk3r6mmjewwxe" path="res://TRESfiles/ScrollBar/scrollbarBG.tres" id="2_6wt5g"]
+[ext_resource type="StyleBox" uid="uid://bvf5jra2a8t7x" path="res://TRESfiles/ScrollBar/scrollgrabbynew.tres" id="2_l04sj"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_sm3tf"]
+
+[resource]
+Panel/styles/panel = ExtResource("1_wdhi1")
+VScrollBar/icons/decrement = SubResource("ImageTexture_sm3tf")
+VScrollBar/icons/decrement_highlight = SubResource("ImageTexture_sm3tf")
+VScrollBar/icons/decrement_pressed = SubResource("ImageTexture_sm3tf")
+VScrollBar/icons/increment = SubResource("ImageTexture_sm3tf")
+VScrollBar/icons/increment_highlight = SubResource("ImageTexture_sm3tf")
+VScrollBar/icons/increment_pressed = SubResource("ImageTexture_sm3tf")
+VScrollBar/styles/grabber = ExtResource("2_l04sj")
+VScrollBar/styles/grabber_highlight = ExtResource("2_l04sj")
+VScrollBar/styles/grabber_pressed = ExtResource("2_l04sj")
+VScrollBar/styles/scroll = ExtResource("2_6wt5g")
+VScrollBar/styles/scroll_focus = ExtResource("2_6wt5g")

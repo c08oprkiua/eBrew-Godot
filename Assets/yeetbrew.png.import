@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqeofe4s2fhsr"
-path="res://.godot/imported/yeetbrew.png-78c0fb000216546ec88c731ddcd3a927.ctex"
+path="res://godot/imported/yeetbrew.png-78c0fb000216546ec88c731ddcd3a927.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Assets/yeetbrew.png"
-dest_files=["res://.godot/imported/yeetbrew.png-78c0fb000216546ec88c731ddcd3a927.ctex"]
+dest_files=["res://godot/imported/yeetbrew.png-78c0fb000216546ec88c731ddcd3a927.ctex"]
 
 [params]
 

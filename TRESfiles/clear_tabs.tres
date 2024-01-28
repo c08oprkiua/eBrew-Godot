@@ -1,33 +1,46 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cbw4j15uc8slj"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://cbw4j15uc8slj"]
 
 [ext_resource type="Texture2D" uid="uid://drjltsomejl56" path="res://Assets/selectedmenupopout.png" id="1_fdpq2"]
-[ext_resource type="StyleBox" uid="uid://ng374ur03yj6" path="res://TRESfiles/clear.tres" id="1_yw8rh"]
 [ext_resource type="Texture2D" uid="uid://c0h6x1koosghp" path="res://Assets/scrolldown.png" id="2_4eku5"]
 [ext_resource type="Texture2D" uid="uid://beg7awtoq4qim" path="res://Assets/ScrollUp.png" id="2_i3jy4"]
-[ext_resource type="StyleBox" uid="uid://c4yk026lr2xgi" path="res://TRESfiles/scrollgrabbyfocus.tres" id="5_fsprk"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sx0dl"]
+[ext_resource type="StyleBox" uid="uid://bvf5jra2a8t7x" path="res://TRESfiles/ScrollBar/scrollgrabbynew.tres" id="4_fsial"]
+[ext_resource type="StyleBox" uid="uid://c4yk026lr2xgi" path="res://TRESfiles/ScrollBar/scrollgrabbyfocus.tres" id="5_xx5rg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_88ieb"]
 texture = ExtResource("1_fdpq2")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fqq22"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nk7ia"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g6nae"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gnipe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ew5pw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqute"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q6ssc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejnpg"]
+
 [resource]
-/styles/clear = SubResource("StyleBoxTexture_sx0dl")
 PopupMenu/styles/panel = SubResource("StyleBoxTexture_88ieb")
-TabBar/styles/tab_disabled = ExtResource("1_yw8rh")
-TabBar/styles/tab_selected = ExtResource("1_yw8rh")
-TabBar/styles/tab_unselected = ExtResource("1_yw8rh")
-TabContainer/styles/panel = ExtResource("1_yw8rh")
-TabContainer/styles/tab_disabled = ExtResource("1_yw8rh")
-TabContainer/styles/tab_selected = ExtResource("1_yw8rh")
-TabContainer/styles/tab_unselected = ExtResource("1_yw8rh")
-TabContainer/styles/tabbar_background = ExtResource("1_yw8rh")
+TabBar/styles/tab_disabled = SubResource("StyleBoxEmpty_fqq22")
+TabBar/styles/tab_selected = SubResource("StyleBoxEmpty_nk7ia")
+TabBar/styles/tab_unselected = SubResource("StyleBoxEmpty_g6nae")
+TabContainer/styles/panel = SubResource("StyleBoxEmpty_gnipe")
+TabContainer/styles/tab_disabled = SubResource("StyleBoxEmpty_ew5pw")
+TabContainer/styles/tab_selected = SubResource("StyleBoxEmpty_cqute")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxEmpty_q6ssc")
+TabContainer/styles/tabbar_background = SubResource("StyleBoxEmpty_ejnpg")
 VScrollBar/icons/decrement = ExtResource("2_i3jy4")
 VScrollBar/icons/decrement_highlight = ExtResource("2_i3jy4")
 VScrollBar/icons/decrement_pressed = ExtResource("2_i3jy4")
 VScrollBar/icons/increment = ExtResource("2_4eku5")
 VScrollBar/icons/increment_highlight = ExtResource("2_4eku5")
 VScrollBar/icons/increment_pressed = ExtResource("2_4eku5")
-VScrollBar/styles/grabber = ExtResource("5_fsprk")
-VScrollBar/styles/grabber_highlight = ExtResource("5_fsprk")
-VScrollBar/styles/grabber_pressed = ExtResource("5_fsprk")
+VScrollBar/styles/grabber = ExtResource("4_fsial")
+VScrollBar/styles/grabber_highlight = ExtResource("5_xx5rg")
+VScrollBar/styles/grabber_pressed = ExtResource("5_xx5rg")

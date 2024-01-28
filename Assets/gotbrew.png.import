@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xops4w1owkk0"
-path="res://.godot/imported/gotbrew.png-fa15e1d55f2b2a805ac51c7533cd742c.ctex"
+path="res://godot/imported/gotbrew.png-fa15e1d55f2b2a805ac51c7533cd742c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Assets/gotbrew.png"
-dest_files=["res://.godot/imported/gotbrew.png-fa15e1d55f2b2a805ac51c7533cd742c.ctex"]
+dest_files=["res://godot/imported/gotbrew.png-fa15e1d55f2b2a805ac51c7533cd742c.ctex"]
 
 [params]
 

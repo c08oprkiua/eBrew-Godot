@@ -1,23 +1,26 @@
 [gd_scene load_steps=18 format=3 uid="uid://dhtdfrq8tvh7e"]
 
 [ext_resource type="ButtonGroup" uid="uid://bogh5ks6jbxtr" path="res://TRESfiles/MenuItems.tres" id="1_f31cj"]
-[ext_resource type="Texture2D" uid="uid://b0dtvemyftf4q" path="res://Assets/selectedpreview.png" id="2_ac6vk"]
+[ext_resource type="Texture2D" uid="uid://6mlkik65ou33" path="res://Assets/selectedpreview2.svg" id="2_7r0su"]
 [ext_resource type="Texture2D" uid="uid://b74mljkkvsr43" path="res://Assets/selectedmenu.png" id="3_tcd7q"]
 [ext_resource type="Texture2D" uid="uid://cpu2pil8b06n" path="res://Assets/hoveredpreview.png" id="4_kk18d"]
 [ext_resource type="Texture2D" uid="uid://tiyeil3mk77n" path="res://Assets/focusmenuoverlay.png" id="4_qaau7"]
 [ext_resource type="Script" path="res://Scripts/MenuControl.gd" id="5_idhyh"]
-[ext_resource type="Resource" uid="uid://c05ppymvd68fl" path="res://TRESfiles/BrewData.tres" id="6_jcf00"]
 [ext_resource type="Texture2D" uid="uid://bg06aung4an3v" path="res://Assets/DLbrew.png" id="6_jiri4"]
 [ext_resource type="Texture2D" uid="uid://xops4w1owkk0" path="res://Assets/gotbrew.png" id="7_jfahr"]
 [ext_resource type="Texture2D" uid="uid://dch4orgx3tpt" path="res://Assets/focusoverlay.png" id="8_gbx3r"]
-[ext_resource type="Resource" uid="uid://chgldtvrin1d2" path="res://TRESfiles/BetterHTTPRequest.tres" id="8_mapy2"]
 [ext_resource type="Texture2D" uid="uid://b61y52rl6jcev" path="res://Assets/failgotbrew.png" id="9_k7s6i"]
 [ext_resource type="Texture2D" uid="uid://dokg7u0mn18d7" path="res://Assets/tweakbrew.png" id="10_k4y2k"]
 [ext_resource type="Texture2D" uid="uid://da4hac0fxo48" path="res://Assets/selectedtweakbrew.png" id="11_v2j5h"]
 [ext_resource type="Texture2D" uid="uid://cqeofe4s2fhsr" path="res://Assets/yeetbrew.png" id="12_57d8c"]
 [ext_resource type="Texture2D" uid="uid://mbxsr5isldfv" path="res://Assets/selectedyeetbrew.png" id="13_52uts"]
+[ext_resource type="Shader" path="res://TRESfiles/StoreListing/roundedcorners.gdshader" id="15_qvjg4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_80tpv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i3xot"]
+shader = ExtResource("15_qvjg4")
+shader_parameter/corner_radius = 33.0
 
 [node name="GenericItem" type="TextureButton"]
 layout_direction = 1
@@ -27,14 +30,12 @@ toggle_mode = true
 button_group = ExtResource("1_f31cj")
 shortcut_feedback = false
 shortcut_in_tooltip = false
-texture_normal = ExtResource("2_ac6vk")
+texture_normal = ExtResource("2_7r0su")
 texture_pressed = ExtResource("3_tcd7q")
 texture_hover = ExtResource("4_kk18d")
 texture_focused = ExtResource("4_qaau7")
 stretch_mode = 0
 script = ExtResource("5_idhyh")
-data = ExtResource("6_jcf00")
-NetworkBox = ExtResource("8_mapy2")
 
 [node name="InfoContainer" type="VSplitContainer" parent="."]
 layout_mode = 1
@@ -114,15 +115,15 @@ texture_pressed = ExtResource("13_52uts")
 texture_focused = ExtResource("8_gbx3r")
 
 [node name="ItemIcon" type="TextureRect" parent="."]
-show_behind_parent = true
+material = SubResource("ShaderMaterial_i3xot")
 clip_contents = true
 layout_mode = 1
 offset_left = 13.0
 offset_top = 11.0
 offset_right = 275.0
 offset_bottom = 112.0
-expand_mode = 2
-stretch_mode = 6
+expand_mode = 3
+stretch_mode = 5
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -1,58 +1,47 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyg17t1gkhndt"]
+[gd_scene load_steps=6 format=3 uid="uid://cyg17t1gkhndt"]
 
-[ext_resource type="Texture2D" uid="uid://cd5jg7vhkp0lj" path="res://Assets/ScrollBarBase.png" id="1_iyqg7"]
 [ext_resource type="Texture2D" uid="uid://beg7awtoq4qim" path="res://Assets/ScrollUp.png" id="2_k1aum"]
 [ext_resource type="Script" path="res://Scripts/ScrollControl.gd" id="2_xig2q"]
-[ext_resource type="Resource" uid="uid://c05ppymvd68fl" path="res://TRESfiles/BrewData.tres" id="3_dm548"]
 [ext_resource type="Texture2D" uid="uid://c0h6x1koosghp" path="res://Assets/scrolldown.png" id="3_hi1h1"]
-[ext_resource type="Theme" uid="uid://xdiggbnfliai" path="res://TRESfiles/ScrollBarTheme.tres" id="3_ky7pe"]
+[ext_resource type="Theme" uid="uid://xdiggbnfliai" path="res://TRESfiles/ScrollBar/ScrollBarTheme.tres" id="4_7suvd"]
+[ext_resource type="StyleBox" uid="uid://djj27clyeq0ai" path="res://TRESfiles/ScrollBar/scrollbarBase.tres" id="5_jlwju"]
 
-[node name="Background" type="TextureRect"]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_iyqg7")
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
+[node name="PanelContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 500)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
 grow_vertical = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 16
+theme_override_styles/panel = ExtResource("5_jlwju")
 script = ExtResource("2_xig2q")
-data = ExtResource("3_dm548")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
 
-[node name="PageUp" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+[node name="PageUp" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 texture_normal = ExtResource("2_k1aum")
 stretch_mode = 5
 
-[node name="Scroll" type="VScrollBar" parent="MarginContainer/VBoxContainer"]
+[node name="Scroll" type="VScrollBar" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 3
-theme = ExtResource("3_ky7pe")
-max_value = 10.0
+theme = ExtResource("4_7suvd")
 rounded = true
 allow_greater = true
 custom_step = 1.0
 
-[node name="PageDown" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+[node name="PageDown" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 texture_normal = ExtResource("3_hi1h1")
 stretch_mode = 5
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/PageUp" to="MarginContainer" method="_on_page_up_pressed"]
-[connection signal="scrolling" from="MarginContainer/VBoxContainer/Scroll" to="MarginContainer" method="_on_scroll_scrolling"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/Scroll" to="MarginContainer" method="_on_scroll_position_changed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/PageDown" to="MarginContainer" method="_on_page_down_pressed"]

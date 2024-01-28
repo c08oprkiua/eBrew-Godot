@@ -1,17 +1,15 @@
 extends TextureButton
 #Note: Code needs to be cleaned up at some point
-@onready var options = $OptionContainer
-@onready var brewinfo = $InfoContainer
-@onready var brewname = $InfoContainer/Title
-@onready var brewdetails = $InfoContainer/Description
-@onready var genericitem = $"."
-@onready var delete = $OptionContainer/Delete
-@onready var download = $OptionContainer/Download
-@onready var settings = $OptionContainer/Settings
-@onready var brewicon = $ItemIcon
-@export var data: BrewInfo
-@export var NetworkBox: BetterHTTPRequest
-@onready var localx
+@onready var options:HBoxContainer = $OptionContainer
+@onready var brewinfo:VSplitContainer = $InfoContainer
+@onready var brewname:Label = $InfoContainer/Title
+@onready var brewdetails:RichTextLabel = $InfoContainer/Description
+@onready var genericitem:TextureButton = $"."
+@onready var delete:TextureButton = $OptionContainer/Delete
+@onready var download:TextureButton = $OptionContainer/Download
+@onready var settings:TextureButton = $OptionContainer/Settings
+@onready var brewicon:TextureRect = $ItemIcon
+@onready var localx: int
 
 func _ready():
 	closebutton()
@@ -24,21 +22,21 @@ func _ready():
 func setinfo(arg1):
 	localx = arg1
 	changetext()
-	data.changeicon(localx)
+	BrewInfo.changeicon(localx)
 
 func changetext():
-	brewname.text = data.Information.packages[localx].title
-	brewdetails.text = data.Information.packages[localx].description
+	brewname.text = BrewInfo.Information.packages[localx].title
+	brewdetails.text = BrewInfo.Information.packages[localx].description
 
 #Icon setting/requesting
 func updooticon(arg1):
 	if is_same(localx, arg1):
-		brewicon.set_texture(data.Icon)
+		brewicon.set_texture(BrewInfo.Icon)
 		SignalBox.disconnect("Processedicon", updooticon)
 		SignalBox.disconnect("DownloadComplete", IsThisMyIcon)
 
 func IsThisMyIcon():
-	data.changeicon(localx)
+	BrewInfo.changeicon(localx)
 
 #Button related processes
 @warning_ignore("shadowed_variable_base_class")
@@ -51,13 +49,13 @@ func _on_toggled(button_pressed):
 		closebutton()
 
 func _on_download_pressed():
-	NetworkBox.DownloadBrew(data.appname)
+	BetterDownloading.DownloadBrew(BrewInfo.appname)
 
 func _on_settings_pressed():
 	pass # Replace with function body.
 
 func _on_delete_pressed():
-	DirAccess.remove_absolute(data.UserFiles+"Downloads/"+data.appname+".zip")
+	DirAccess.remove_absolute(BrewInfo.UserFiles+"Downloads/"+BrewInfo.appname+".zip")
 
 func closebutton():
 		brewinfo.visible = true
@@ -70,12 +68,13 @@ func focuscheck(arg1):
 		options.visible = false
 
 func whenfocus():
-	data.updatevars(localx)
+	BrewInfo.appname = BrewInfo.Information.packages[localx].name
+	#BrewInfo.updatevars(localx)
 	SignalBox.emit_signal("Thisitem", localx)
-	if FileAccess.file_exists(data.UserFiles+"Icons/"+data.appname+".png"):
-		data.changeicon(localx)
+	if FileAccess.file_exists(BrewInfo.UserFiles+"Icons/"+BrewInfo.appname+".png"):
+		BrewInfo.changeicon(localx)
 	else:
-		NetworkBox.DownloadIcon(data.appname)
+		BetterDownloading.DownloadIcon(BrewInfo.appname)
 
 func GrabFocus(where):
 	if where == localx:
@@ -86,5 +85,3 @@ func _on_focus_entered():
 
 func _on_mouse_entered():
 	whenfocus()
-
-

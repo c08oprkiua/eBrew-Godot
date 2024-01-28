@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://mx60ofmbq5d6"]
+
+[ext_resource type="Script" path="res://Scenes/Confirm.gd" id="1_e7kl2"]
+
+[node name="ConfirmationDialog" type="ConfirmationDialog"]
+title = "Confirm file deletion"
+initial_position = 2
+size = Vector2i(532, 135)
+visible = true
+ok_button_text = "Yes, delete these files"
+dialog_text = "You are about to delete several files. Are you sure you want to do this? If you are offline, these files will not be available until you are online to re-download them again."
+dialog_autowrap = true
+cancel_button_text = "Cancel deletion"
+script = ExtResource("1_e7kl2")
+
+[connection signal="canceled" from="." to="." method="_on_canceled"]
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="confirmed" from="." to="." method="_on_confirmed"]

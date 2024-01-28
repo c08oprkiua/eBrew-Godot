@@ -1,0 +1,143 @@
+[gd_scene load_steps=12 format=3 uid="uid://nafnxfemjxat"]
+
+[ext_resource type="Script" path="res://TRESfiles/StoreListing/new_generic_item.gd" id="2_nmbiv"]
+[ext_resource type="StyleBox" uid="uid://brsm8y0uxmt67" path="res://TRESfiles/StoreListing/Options/OptionBase.tres" id="4_65d6a"]
+[ext_resource type="Shader" path="res://TRESfiles/StoreListing/roundedcorners.gdshader" id="4_kfbkc"]
+[ext_resource type="StyleBox" uid="uid://q3ceqeyiantb" path="res://TRESfiles/StoreListing/Options/DLbrewbase.tres" id="5_i6qo8"]
+[ext_resource type="StyleBox" uid="uid://tke4og2mh8n5" path="res://TRESfiles/StoreListing/tweakbrewbase.tres" id="5_wsopf"]
+[ext_resource type="Theme" uid="uid://bevbrttb1klmo" path="res://TRESfiles/StoreListing/ListingTheme.tres" id="7_btxt0"]
+[ext_resource type="Theme" uid="uid://cwa5yq8mxlgib" path="res://TRESfiles/StoreListing/Options/deletebrewtheme.tres" id="8_6u5wv"]
+[ext_resource type="AnimationLibrary" uid="uid://brfqvw5w5pann" path="res://TRESfiles/StoreListing/Listinganimlib.res" id="8_j4hi4"]
+[ext_resource type="StyleBox" uid="uid://dn7x3lkcbinc5" path="res://TRESfiles/StoreListing/Base.tres" id="15_x7ran"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0irdj"]
+shader = ExtResource("4_kfbkc")
+shader_parameter/corner_radius = 25.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_80tpv"]
+
+[node name="Panel" type="PanelContainer"]
+custom_minimum_size = Vector2(652, 121)
+offset_right = 652.0
+offset_bottom = 121.0
+theme_override_styles/panel = ExtResource("15_x7ran")
+script = ExtResource("2_nmbiv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../StoreListing")
+libraries = {
+"Listinganimlib": ExtResource("8_j4hi4")
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 13
+theme_override_constants/margin_top = 13
+theme_override_constants/margin_right = 13
+theme_override_constants/margin_bottom = 13
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ItemIcon" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_0irdj")
+clip_contents = true
+custom_minimum_size = Vector2(256, 90)
+layout_mode = 2
+expand_mode = 5
+stretch_mode = 5
+
+[node name="InfoContainer" type="VSplitContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+dragger_visibility = 2
+
+[node name="Title" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/InfoContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 1
+text = "If you see this at runtime, something is wrong"
+label_settings = SubResource("LabelSettings_80tpv")
+justification_flags = 162
+text_overrun_behavior = 3
+
+[node name="Description" type="RichTextLabel" parent="HBoxContainer/MarginContainer/HBoxContainer/InfoContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+text = "If you see this at runtime, something is wrong"
+fit_content = true
+scroll_following = true
+autowrap_mode = 2
+
+[node name="OptionBase" type="Panel" parent="HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(360, 122)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("4_65d6a")
+
+[node name="OptionContainer" type="HBoxContainer" parent="HBoxContainer/OptionBase"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Download" type="Button" parent="HBoxContainer/OptionBase/OptionContainer" groups=["optionbuttons"]]
+show_behind_parent = true
+visibility_layer = 2
+custom_minimum_size = Vector2(98, 98)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+tooltip_text = "Download, update, or reinstall this homebrew or app."
+focus_neighbor_right = NodePath("../Settings")
+theme_override_styles/normal = ExtResource("5_i6qo8")
+theme_override_styles/hover = ExtResource("5_i6qo8")
+
+[node name="Settings" type="Button" parent="HBoxContainer/OptionBase/OptionContainer" groups=["optionbuttons"]]
+show_behind_parent = true
+visibility_layer = 2
+custom_minimum_size = Vector2(98, 98)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+tooltip_text = "Change the settings for this app or plugin"
+focus_neighbor_left = NodePath("../Download")
+focus_neighbor_right = NodePath("../Delete")
+theme_override_styles/normal = ExtResource("5_wsopf")
+
+[node name="Delete" type="Button" parent="HBoxContainer/OptionBase/OptionContainer" groups=["optionbuttons"]]
+show_behind_parent = true
+visibility_layer = 2
+custom_minimum_size = Vector2(98, 98)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+tooltip_text = "Uninstall this app or plugin"
+focus_neighbor_left = NodePath("../Settings")
+theme = ExtResource("8_6u5wv")
+icon_alignment = 1
+
+[node name="StoreListing" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("7_btxt0")
+toggle_mode = true
+flat = true
+
+[connection signal="pressed" from="HBoxContainer/OptionBase/OptionContainer/Delete" to="StoreListing" method="_on_delete_pressed"]
+[connection signal="toggled" from="StoreListing" to="." method="_on_store_listing_toggled"]

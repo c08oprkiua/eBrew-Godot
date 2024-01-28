@@ -1,19 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6rdv2mlybcm4"]
+[gd_scene load_steps=4 format=3 uid="uid://b6rdv2mlybcm4"]
 
 [ext_resource type="Script" path="res://Scripts/Settings.gd" id="1_u34m1"]
-[ext_resource type="Resource" uid="uid://c05ppymvd68fl" path="res://TRESfiles/BrewData.tres" id="2_7jxtb"]
-[ext_resource type="Resource" uid="uid://chgldtvrin1d2" path="res://TRESfiles/BetterHTTPRequest.tres" id="3_kp8ri"]
 [ext_resource type="Theme" uid="uid://dbn8wrbug8rf8" path="res://TRESfiles/SettingsTheming/settingspagetheme.tres" id="3_oa0mk"]
 [ext_resource type="Theme" uid="uid://c6d64x6k1xx7l" path="res://TRESfiles/SettingsTheming/settingsmargins.tres" id="4_0s175"]
 
 [node name="Window" type="Window"]
+disable_3d = true
 title = "Settings"
 initial_position = 1
-size = Vector2i(620, 200)
+size = Vector2i(670, 350)
 wrap_controls = true
 transient = true
 exclusive = true
 popup_window = true
+theme = ExtResource("3_oa0mk")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -24,9 +24,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_oa0mk")
 script = ExtResource("1_u34m1")
-data = ExtResource("2_7jxtb")
-NetworkBox = ExtResource("3_kp8ri")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -60,15 +59,15 @@ layout_mode = 2
 layout_mode = 2
 text = "Homebrew directory:"
 
-[node name="Field" type="LineEdit" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/DownloadDirectory"]
+[node name="BrewField" type="LineEdit" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/DownloadDirectory"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Where downloads go"
 
-[node name="Save" type="Button" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/DownloadDirectory"]
+[node name="TestDir" type="Button" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/DownloadDirectory"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Save"
+text = "Check Directory"
 
 [node name="ImageDir" type="HBoxContainer" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister"]
 layout_mode = 2
@@ -77,15 +76,15 @@ layout_mode = 2
 layout_mode = 2
 text = "Background file directory:"
 
-[node name="Field" type="LineEdit" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/ImageDir"]
+[node name="BGField" type="LineEdit" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/ImageDir"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "PNG only"
 
-[node name="Save" type="Button" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/ImageDir"]
+[node name="TestBG" type="Button" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/ImageDir"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Save"
+text = "Check Background Image"
 
 [node name="MusicDir" type="HBoxContainer" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister"]
 layout_mode = 2
@@ -94,15 +93,15 @@ layout_mode = 2
 layout_mode = 2
 text = "Music file directory:"
 
-[node name="Field" type="LineEdit" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/MusicDir"]
+[node name="BGMField" type="LineEdit" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/MusicDir"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "MP3 only"
 
-[node name="Save" type="Button" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/MusicDir"]
+[node name="TestBGM" type="Button" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/MusicDir"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Save"
+text = "Check Music File"
 
 [node name="FTPInfo" type="HBoxContainer" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister"]
 layout_mode = 2
@@ -121,15 +120,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Port"
 
-[node name="Save" type="Button" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/FTPInfo"]
+[node name="TestCon" type="Button" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/FTPInfo"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Save"
-
-[node name="OpenCfgDir" type="Button" parent="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister"]
-layout_mode = 2
-size_flags_vertical = 2
-text = "Your settings can be manually edited here"
+text = "Test Connection"
 
 [node name="App Behavior" type="MarginContainer" parent="Control/VBoxContainer/TabContainer"]
 visible = false
@@ -144,84 +138,85 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
-[node name="Autoload" type="HBoxContainer" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/Autoload"]
-layout_mode = 2
-text = "Auto-load Homebrew App List"
-
-[node name="Toggle" type="CheckButton" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/Autoload"]
+[node name="Autoload" type="CheckButton" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
+tooltip_text = "Automatically load the list of homebrew apps downloaded from the Homebrew App Store servers. Will wait until said list is downloaded if \"Auto Download\" is also enabled."
+text = "Automatically load homebrew listings"
 
-[node name="AutoDownloadRepo" type="HBoxContainer" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/AutoDownloadRepo"]
-layout_mode = 2
-text = "Auto-download Homebrew App List"
-
-[node name="Toggle" type="CheckButton" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/AutoDownloadRepo"]
+[node name="AutoDL" type="CheckButton" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
+tooltip_text = "Automatically download the latest information about apps on the Homebrew App Store. Recommended, but can cause issues with using HBL features offline."
+text = "Automatically fetch new listings"
 
-[node name="LoadCustomBackgroundImage" type="HBoxContainer" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/LoadCustomBackgroundImage"]
-layout_mode = 2
-text = "Load custom background image"
-
-[node name="Toggle" type="CheckButton" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/LoadCustomBackgroundImage"]
+[node name="CustBG" type="CheckButton" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
+tooltip_text = "Load a custom background image in place of the standard default blue \"eBrew\" background"
+text = "Use custom background image"
 
-[node name="LoadCustomBackgroundMusic" type="HBoxContainer" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister"]
+[node name="CustBGM" type="CheckButton" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
+text = "Use custom background music"
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/LoadCustomBackgroundMusic"]
+[node name="AutoFTP" type="CheckButton" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister"]
 layout_mode = 2
-text = "Load custom background music"
-
-[node name="Toggle" type="CheckButton" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/LoadCustomBackgroundMusic"]
-layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
+tooltip_text = "Automatically send homebrew downloaded through eBrew to your console over FTP, if your console has been properly configured in the FTP settings. "
+text = "Automatically send homebrew to console over FTP"
 
-[node name="ManualControls" type="HBoxContainer" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister"]
+[node name="Advanced" type="MarginContainer" parent="Control/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
-size_flags_vertical = 3
+theme = ExtResource("4_0s175")
 
-[node name="RepoDownload" type="Button" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/ManualControls"]
+[node name="Scroller" type="ScrollContainer" parent="Control/VBoxContainer/TabContainer/Advanced"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/TabContainer/Advanced/Scroller"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Download Homebrew App List"
+size_flags_vertical = 3
 
-[node name="ListLoad" type="Button" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/ManualControls"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "(re)load Homebrew App List"
-
-[node name="FileControls" type="HBoxContainer" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister"]
+[node name="FileControls" type="HBoxContainer" parent="Control/VBoxContainer/TabContainer/Advanced/Scroller/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="AppDelete" type="Button" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/FileControls"]
+[node name="AppDelete" type="Button" parent="Control/VBoxContainer/TabContainer/Advanced/Scroller/VBoxContainer/FileControls"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Delete all downloaded apps"
 
-[node name="IconDelete" type="Button" parent="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/FileControls"]
+[node name="IconDelete" type="Button" parent="Control/VBoxContainer/TabContainer/Advanced/Scroller/VBoxContainer/FileControls"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Delete locally saved icons"
+
+[node name="ManualControls" type="HBoxContainer" parent="Control/VBoxContainer/TabContainer/Advanced/Scroller/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RepoDownload" type="Button" parent="Control/VBoxContainer/TabContainer/Advanced/Scroller/VBoxContainer/ManualControls"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Download Homebrew App List"
+
+[node name="ListLoad" type="Button" parent="Control/VBoxContainer/TabContainer/Advanced/Scroller/VBoxContainer/ManualControls"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(re)load Homebrew App List"
+
+[node name="OpenCfgDir" type="Button" parent="Control/VBoxContainer/TabContainer/Advanced/Scroller/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Your settings can be manually edited here"
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
@@ -243,17 +238,27 @@ size_flags_horizontal = 3
 text = "Save Changes"
 
 [connection signal="close_requested" from="." to="Control" method="_on_window_close_requested"]
-[connection signal="text_submitted" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/DownloadDirectory/Field" to="Control" method="_on_downloaddir_text_submitted"]
-[connection signal="text_submitted" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/ImageDir/Field" to="Control" method="_on_ImageDir_submitted"]
-[connection signal="text_submitted" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/MusicDir/Field" to="Control" method="_on_MusicDir_submitted"]
-[connection signal="pressed" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/OpenCfgDir" to="Control" method="_on_open_cfg_dir_pressed"]
-[connection signal="toggled" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/Autoload/Toggle" to="Control" method="_on_auto_load_hbas_toggled"]
-[connection signal="toggled" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/AutoDownloadRepo/Toggle" to="Control" method="_on_autodownload_toggled" binds= ["AutoDownloadRepo"]]
-[connection signal="toggled" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/LoadCustomBackgroundImage/Toggle" to="Control" method="_on_load_image_toggle_toggled"]
-[connection signal="toggled" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/LoadCustomBackgroundMusic/Toggle" to="Control" method="_on_loadmusic_toggled"]
-[connection signal="pressed" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/ManualControls/RepoDownload" to="Control" method="_on_repo_download_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/ManualControls/ListLoad" to="Control" method="_on_list_load_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/FileControls/AppDelete" to="Control" method="_on_app_delete_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/FileControls/IconDelete" to="Control" method="_on_icon_delete_pressed"]
+[connection signal="text_changed" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/DownloadDirectory/BrewField" to="Control" method="_on_brew_field_text_changed"]
+[connection signal="text_submitted" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/DownloadDirectory/BrewField" to="Control" method="_on_downloaddir_text_submitted"]
+[connection signal="pressed" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/DownloadDirectory/TestDir" to="Control" method="_on_test_dir_pressed"]
+[connection signal="text_changed" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/ImageDir/BGField" to="Control" method="_on_bg_field_text_changed"]
+[connection signal="text_submitted" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/ImageDir/BGField" to="Control" method="_on_ImageDir_submitted"]
+[connection signal="pressed" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/ImageDir/TestBG" to="Control" method="_on_test_bg_pressed"]
+[connection signal="text_changed" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/MusicDir/BGMField" to="Control" method="_on_bgm_field_text_changed"]
+[connection signal="text_submitted" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/MusicDir/BGMField" to="Control" method="_on_MusicDir_submitted"]
+[connection signal="pressed" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/MusicDir/TestBGM" to="Control" method="_on_test_bgm_pressed"]
+[connection signal="text_changed" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/FTPInfo/IPField" to="Control" method="_on_ip_field_text_changed"]
+[connection signal="text_changed" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/FTPInfo/PortField" to="Control" method="_on_port_field_text_changed"]
+[connection signal="pressed" from="Control/VBoxContainer/TabContainer/Directories/Scroller/Lister/FTPInfo/TestCon" to="Control" method="_on_test_con_pressed"]
+[connection signal="toggled" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/Autoload" to="Control" method="_on_auto_load_hbas_toggled"]
+[connection signal="toggled" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/AutoDL" to="Control" method="_on_autodownload_toggled" binds= ["AutoDownloadRepo"]]
+[connection signal="toggled" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/CustBG" to="Control" method="_on_load_image_toggle_toggled"]
+[connection signal="toggled" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/CustBGM" to="Control" method="_on_loadmusic_toggled"]
+[connection signal="toggled" from="Control/VBoxContainer/TabContainer/App Behavior/Scroller/Lister/AutoFTP" to="Control" method="_on_auto_ftp_toggled"]
+[connection signal="pressed" from="Control/VBoxContainer/TabContainer/Advanced/Scroller/VBoxContainer/FileControls/AppDelete" to="Control" method="_on_app_delete_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/TabContainer/Advanced/Scroller/VBoxContainer/FileControls/IconDelete" to="Control" method="_on_icon_delete_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/TabContainer/Advanced/Scroller/VBoxContainer/ManualControls/RepoDownload" to="Control" method="_on_repo_download_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/TabContainer/Advanced/Scroller/VBoxContainer/ManualControls/ListLoad" to="Control" method="_on_list_load_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/TabContainer/Advanced/Scroller/VBoxContainer/OpenCfgDir" to="Control" method="_on_open_cfg_dir_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/MarginContainer/WindowOptions/CancelChanges" to="Control" method="_on_cancel_changes_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/MarginContainer/WindowOptions/SaveChanges" to="Control" method="_on_save_changes_pressed"]

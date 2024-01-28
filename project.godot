@@ -11,25 +11,51 @@ config_version=5
 [application]
 
 config/name="eBrew Store"
-config/description="This is a proof of concept implimentation of the eBrew Store mockups from 2021."
+config/description="This is a functional recreation of the eBrew Store mockups from 2021."
+config/tags=PackedStringArray("gui_tools", "wii_u")
 run/main_scene="res://Scenes/ui.tscn"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+config/use_hidden_project_data_directory=false
+config/quit_on_go_back=false
+config/features=PackedStringArray("4.2", "GL Compatibility")
+run/low_processor_mode=true
 boot_splash/bg_color=Color(0.137255, 0.478431, 0.780392, 1)
 boot_splash/image="res://Assets/eBrewText.png"
 boot_splash/fullsize=false
 config/icon="res://Assets/theE.png"
+config/windows_native_icon="res://Assets/theE.ico"
 
 [autoload]
 
-BrewData="*res://TRESfiles/BrewData.tres"
+BrewInfo="*res://Scripts/BrewInfo.gd"
 SignalBox="*res://Scripts/SignalBox.gd"
 BetterDownloading="*res://Scripts/BetterDownloading.gd"
 
 [display]
 
 window/size/extend_to_title=true
+window/energy_saving/keep_screen_on=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/handheld/orientation=1
+window/ios/hide_home_indicator=false
+window/ios/hide_status_bar=false
+
+[eBrew]
+
+AppBehavior/LoadCustomImage=false
+AppBehavior/LoadCustomMusic=false
+AppBehavior/AutoLoad=false
+AppBehavior/AutoDownloadRepo=false
+AppBehavior/AutoFTP=false
+AppBehavior/CustomImageDirectory=""
+AppBehavior/CustomMusicDirectory=""
+AppBehavior/ExternalHomebrewDirectory=""
+AppBehavior/FTP_IP_Address=""
+AppBehavior/FTP_Port=""
+
+[editor]
+
+import/reimport_missing_imported_files=false
 
 [filesystem]
 
@@ -49,6 +75,7 @@ ui_accept={
 ui_select={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":32,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
 ui_cancel={
@@ -79,6 +106,23 @@ ui_page_down={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194324,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":10,"pressure":0.0,"pressed":true,"script":null)
+]
+}
+ui_text_completion_accept={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194309,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194310,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+ui_text_scroll_up={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"command_or_control_autoremap":true,"alt_pressed":false,"shift_pressed":false,"pressed":false,"keycode":4194320,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+ui_text_scroll_down={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"command_or_control_autoremap":true,"alt_pressed":false,"shift_pressed":false,"pressed":false,"keycode":4194322,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 

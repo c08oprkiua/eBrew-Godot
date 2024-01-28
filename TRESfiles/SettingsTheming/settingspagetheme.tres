@@ -1,14 +1,32 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dbn8wrbug8rf8"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://dbn8wrbug8rf8"]
 
-[ext_resource type="StyleBox" uid="uid://cnaio5n0fqfau" path="res://styleboxflat color0f5080.tres" id="1_juix5"]
-[ext_resource type="StyleBox" uid="uid://ch08mfgjrbcsp" path="res://styleboxflat color052d4b.tres" id="2_ictph"]
-[ext_resource type="StyleBox" uid="uid://ce6p8wyg50x3f" path="res://styleboxflat color_021a2e.tres" id="2_nf0ij"]
-[ext_resource type="StyleBox" uid="uid://dkt7vkwgh5wcl" path="res://styleboxflat color021628.tres" id="4_fbgx5"]
+[ext_resource type="StyleBox" uid="uid://hml1uwtr2alr" path="res://TRESfiles/SettingsTheming/buttons/newbuttonhover.tres" id="1_2giub"]
+[ext_resource type="StyleBox" uid="uid://cnaio5n0fqfau" path="res://TRESfiles/SettingsTheming/styleboxflat color0f5080.tres" id="1_juix5"]
+[ext_resource type="StyleBox" uid="uid://cplhr56wx87sy" path="res://TRESfiles/SettingsTheming/buttons/newbutton.tres" id="2_hpxnd"]
+[ext_resource type="StyleBox" uid="uid://ch08mfgjrbcsp" path="res://TRESfiles/SettingsTheming/TabSelected.tres" id="2_ictph"]
+[ext_resource type="StyleBox" uid="uid://bkf2paebru5b3" path="res://TRESfiles/SettingsTheming/buttons/newbuttonpressed.tres" id="3_imlyh"]
+[ext_resource type="StyleBox" uid="uid://ce6p8wyg50x3f" path="res://TRESfiles/SettingsTheming/TabUnselected.tres" id="4_gaji3"]
+[ext_resource type="StyleBox" uid="uid://dug3a1u743qe5" path="res://TRESfiles/SettingsTheming/buttons/buttonclearmargins.tres" id="4_nsrrj"]
+[ext_resource type="StyleBox" uid="uid://dkt7vkwgh5wcl" path="res://TRESfiles/SettingsTheming/TabBarBG.tres" id="7_ff77c"]
+[ext_resource type="StyleBox" uid="uid://djxt4p0tnjmd7" path="res://TRESfiles/SettingsTheming/windowbox.stylebox" id="9_n1kmf"]
 
 [resource]
+Button/styles/focus = ExtResource("1_2giub")
+Button/styles/hover = ExtResource("2_hpxnd")
+Button/styles/normal = ExtResource("3_imlyh")
+Button/styles/pressed = ExtResource("3_imlyh")
+CheckButton/styles/disabled = ExtResource("4_nsrrj")
+CheckButton/styles/focus = ExtResource("4_nsrrj")
+CheckButton/styles/hover = ExtResource("4_nsrrj")
+CheckButton/styles/hover_pressed = ExtResource("4_nsrrj")
+CheckButton/styles/normal = ExtResource("4_nsrrj")
+CheckButton/styles/pressed = ExtResource("4_nsrrj")
+LineEdit/styles/focus = ExtResource("2_ictph")
+LineEdit/styles/normal = ExtResource("4_gaji3")
 TabContainer/styles/panel = ExtResource("1_juix5")
 TabContainer/styles/tab_disabled = null
-TabContainer/styles/tab_hovered = null
+TabContainer/styles/tab_hovered = ExtResource("4_gaji3")
 TabContainer/styles/tab_selected = ExtResource("2_ictph")
-TabContainer/styles/tab_unselected = ExtResource("2_nf0ij")
-TabContainer/styles/tabbar_background = ExtResource("4_fbgx5")
+TabContainer/styles/tab_unselected = ExtResource("4_gaji3")
+TabContainer/styles/tabbar_background = ExtResource("7_ff77c")
+Window/styles/embedded_border = ExtResource("9_n1kmf")

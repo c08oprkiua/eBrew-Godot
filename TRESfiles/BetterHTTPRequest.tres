@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="BetterHTTPRequest" load_steps=2 format=3 uid="uid://chgldtvrin1d2"]
-
-[ext_resource type="Script" path="res://Scripts/BetterDownloading.gd" id="1_3ueau"]
-
-[resource]
-script = ExtResource("1_3ueau")

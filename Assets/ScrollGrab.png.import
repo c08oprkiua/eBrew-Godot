@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6aabq5566ka3"
-path="res://.godot/imported/ScrollGrab.png-44a987da0ba427d0f405dd42c12912e6.ctex"
+path="res://godot/imported/ScrollGrab.png-44a987da0ba427d0f405dd42c12912e6.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Assets/ScrollGrab.png"
-dest_files=["res://.godot/imported/ScrollGrab.png-44a987da0ba427d0f405dd42c12912e6.ctex"]
+dest_files=["res://godot/imported/ScrollGrab.png-44a987da0ba427d0f405dd42c12912e6.ctex"]
 
 [params]
 

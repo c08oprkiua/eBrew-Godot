@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bevbrttb1klmo"]
+
+[ext_resource type="StyleBox" uid="uid://cnqp611q5hlmb" path="res://TRESfiles/StoreListing/Options/brewbuttonoverlay.tres" id="1_p7hy0"]
+[ext_resource type="StyleBox" uid="uid://dn7x3lkcbinc5" path="res://TRESfiles/StoreListing/Base.tres" id="2_7qoao"]
+
+[resource]
+Button/styles/focus = ExtResource("1_p7hy0")
+Button/styles/normal = ExtResource("2_7qoao")
+HBoxContainer/constants/separation = 10
+MarginContainer/constants/margin_bottom = 15
+MarginContainer/constants/margin_left = 18
+MarginContainer/constants/margin_right = 18
+MarginContainer/constants/margin_top = 15

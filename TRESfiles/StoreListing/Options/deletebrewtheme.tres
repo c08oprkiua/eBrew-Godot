@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cwa5yq8mxlgib"]
+
+[ext_resource type="StyleBox" uid="uid://cesncmbywac7r" path="res://TRESfiles/StoreListing/Options/deletebrewbase.tres" id="1_j4l00"]
+[ext_resource type="StyleBox" uid="uid://cnqp611q5hlmb" path="res://TRESfiles/StoreListing/Options/brewbuttonoverlay.tres" id="2_d27ax"]
+
+[resource]
+Button/styles/disabled = ExtResource("1_j4l00")
+Button/styles/focus = ExtResource("2_d27ax")
+Button/styles/hover = ExtResource("1_j4l00")
+Button/styles/normal = ExtResource("1_j4l00")
+Button/styles/pressed = ExtResource("1_j4l00")

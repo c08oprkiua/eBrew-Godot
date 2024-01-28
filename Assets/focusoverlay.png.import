@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dch4orgx3tpt"
-path="res://.godot/imported/focusoverlay.png-205eb128bd7fe331c39034a4cd4541b8.ctex"
+path="res://godot/imported/focusoverlay.png-205eb128bd7fe331c39034a4cd4541b8.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Assets/focusoverlay.png"
-dest_files=["res://.godot/imported/focusoverlay.png-205eb128bd7fe331c39034a4cd4541b8.ctex"]
+dest_files=["res://godot/imported/focusoverlay.png-205eb128bd7fe331c39034a4cd4541b8.ctex"]
 
 [params]
 
