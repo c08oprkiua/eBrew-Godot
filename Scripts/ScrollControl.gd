@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@onready var scroll = $VBoxContainer/Scroll
+@onready var scroll:VScrollBar = $VBoxContainer/Scroll
 
 func _ready():
 	SignalBox.connect("SafeRepo", Initialize)

@@ -3,7 +3,7 @@ extends Node
 var Client: HTTPClient = HTTPClient.new()
 
 var clientinfo: Dictionary = {"version": BrewInfo.version, "Client": OS.get_distribution_name()}
-var uniheaders = "User-Agent: eBrew ver {version} {Client} client"
+var uniheaders:String = "User-Agent: eBrew ver {version} {Client} client"
 var responseheaders: Dictionary
 var downloadtypes: Dictionary
 var iconname: String : set = updatedllist
@@ -22,10 +22,38 @@ var ConnectWarn: bool = true
 
 var currentcdn:String
 #This dictionary is usable to access the Switch CDN (secret feature :P)
-const cdns = {
+const cdns:Dictionary = {
 	"wiiu": "wiiu.cdn.fortheusers.org",
 	"switch": "switch.cdn.fortheusers.org"
 }
+
+const repo_download:Dictionary = {
+	"path": "/repo.json",
+	"headers": "Accept: image/png"
+}
+
+const icon_download:Dictionary = {
+	"path": "/packages/{value}/icon.png",
+	"headers": "Accept: image/png",
+}
+
+const package_download:Dictionary = {
+	"path": "/zips/{value}.zip",
+	"headers": "Accept: application/zip",
+}
+
+class QueueItem:
+	extends Resource
+	var headers:String
+	var appname:String
+	var url:String
+	
+	func update_vars(info:Dictionary, appname:String = "") -> void:
+		headers = info.get("headers")
+		if appname != "":
+			url = info.get("path")
+		else:
+			url = info.get("path")
 
 func updatedllist(value: String):
 	mutex.lock()
@@ -37,7 +65,7 @@ func updatedllist(value: String):
 	}
 	mutex.unlock()
 
-func InitialConnection():
+func InitialConnection() -> void:
 	var conf:ConfigFile = ConfigFile.new()
 	conf.load(BrewInfo.inifilepath)
 	currentcdn = conf.get_value("AppBehavior", "CDN", "wiiu")
@@ -55,7 +83,7 @@ func InitialConnection():
 		ConnectOk = true
 		print("Okay")
 
-func Download():
+func Download() -> void:
 	for todo in queue:
 		var trsbf = queue.get(todo)
 		mutex.lock()

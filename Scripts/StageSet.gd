@@ -1,6 +1,6 @@
 extends Node
 
-func _ready():
+func _ready() -> void:
 	BrewInfo.filesyscheck()
 	BetterDownloading.InitialConnection()
 	BrewInfo.setini.load(BrewInfo.inifilepath)
@@ -9,7 +9,7 @@ func _ready():
 	loadbackgroundimage()
 	AutoBootBehaviors()
 
-func AutoBootBehaviors():
+func AutoBootBehaviors() -> void:
 	if BrewInfo.setini.get_value("AppBehavior", "Autoload"):
 		if BrewInfo.setini.get_value("AppBehavior", "AutoDownloadRepo"):
 			await BetterDownloading.DownloadRepo()
@@ -19,8 +19,8 @@ func AutoBootBehaviors():
 	elif BrewInfo.setini.get_value("AppBehavior", "AutoDownloadRepo"):
 		BetterDownloading.DownloadRepo()
 
-func loadbackgroundimage():
-	var bg
+func loadbackgroundimage() -> void:
+	var bg:Image
 	if BrewInfo.setini.has_section_key("AppBehavior", "LoadCustomBackgroundImage"):
 		if BrewInfo.setini.get_value("AppBehavior", "LoadCustomBackgroundImage"):
 			var CustImgDir = BrewInfo.setini.get_value("Directories", "CustomBackgroundImageDirectory")

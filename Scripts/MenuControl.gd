@@ -9,9 +9,9 @@ extends TextureButton
 @onready var download:TextureButton = $OptionContainer/Download
 @onready var settings:TextureButton = $OptionContainer/Settings
 @onready var brewicon:TextureRect = $ItemIcon
-@onready var localx: int
+@onready var localx:int
 
-func _ready():
+func _ready() -> void:
 	closebutton()
 	SignalBox.connect("InitDir",setinfo, 4)
 	SignalBox.connect("Thisitem", focuscheck)
@@ -19,17 +19,17 @@ func _ready():
 	SignalBox.connect("DownloadComplete", IsThisMyIcon)
 	SignalBox.connect("Gohere", GrabFocus)
 
-func setinfo(arg1):
+func setinfo(arg1:int) -> void:
 	localx = arg1
 	changetext()
 	BrewInfo.changeicon(localx)
 
-func changetext():
+func changetext() -> void:
 	brewname.text = BrewInfo.Information.packages[localx].title
 	brewdetails.text = BrewInfo.Information.packages[localx].description
 
 #Icon setting/requesting
-func updooticon(arg1):
+func updooticon(arg1:int) -> void:
 	if is_same(localx, arg1):
 		brewicon.set_texture(BrewInfo.Icon)
 		SignalBox.disconnect("Processedicon", updooticon)
@@ -40,7 +40,7 @@ func IsThisMyIcon():
 
 #Button related processes
 @warning_ignore("shadowed_variable_base_class")
-func _on_toggled(button_pressed):
+func _on_toggled(button_pressed:bool) -> void:
 	if button_pressed:
 		brewinfo.visible= false
 		options.visible = true
@@ -48,21 +48,21 @@ func _on_toggled(button_pressed):
 	elif not button_pressed:
 		closebutton()
 
-func _on_download_pressed():
+func _on_download_pressed() -> void:
 	BetterDownloading.DownloadBrew(BrewInfo.appname)
 
-func _on_settings_pressed():
+func _on_settings_pressed() -> void:
 	pass # Replace with function body.
 
-func _on_delete_pressed():
+func _on_delete_pressed() -> void:
 	DirAccess.remove_absolute(BrewInfo.UserFiles+"Downloads/"+BrewInfo.appname+".zip")
 
-func closebutton():
+func closebutton() -> void:
 		brewinfo.visible = true
 		options.visible = false
 
 #Focus related
-func focuscheck(arg1):
+func focuscheck(arg1:int) -> void:
 	if not is_same(arg1, localx):
 		genericitem.set_pressed(false)
 		options.visible = false
@@ -76,12 +76,12 @@ func whenfocus():
 	else:
 		BetterDownloading.DownloadIcon(BrewInfo.appname)
 
-func GrabFocus(where):
+func GrabFocus(where:int) -> void:
 	if where == localx:
 		self.grab_focus()
 
-func _on_focus_entered():
+func _on_focus_entered() -> void:
 	whenfocus()
 
-func _on_mouse_entered():
+func _on_mouse_entered() -> void:
 	whenfocus()

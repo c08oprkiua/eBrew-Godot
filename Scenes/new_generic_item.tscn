@@ -20,6 +20,7 @@ shader_parameter/corner_radius = 25.0
 custom_minimum_size = Vector2(652, 121)
 offset_right = 652.0
 offset_bottom = 121.0
+theme = ExtResource("7_btxt0")
 theme_override_styles/panel = ExtResource("15_x7ran")
 script = ExtResource("2_nmbiv")
 
@@ -34,17 +35,12 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_constants/margin_left = 13
 theme_override_constants/margin_top = 13
 theme_override_constants/margin_right = 13
 theme_override_constants/margin_bottom = 13
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="ItemIcon" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="ItemIcon" type="TextureRect" parent="HBoxContainer/MarginContainer"]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_0irdj")
 clip_contents = true
@@ -53,13 +49,25 @@ layout_mode = 2
 expand_mode = 5
 stretch_mode = 5
 
-[node name="InfoContainer" type="VSplitContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="VisibilitySwitcher" type="TabContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tabs_visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VisibilitySwitcher"]
+layout_mode = 2
+theme_override_constants/margin_left = 13
+theme_override_constants/margin_top = 13
+theme_override_constants/margin_right = 13
+theme_override_constants/margin_bottom = 13
+
+[node name="InfoContainer" type="VSplitContainer" parent="HBoxContainer/VisibilitySwitcher/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 dragger_visibility = 2
 
-[node name="Title" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/InfoContainer"]
+[node name="Title" type="Label" parent="HBoxContainer/VisibilitySwitcher/MarginContainer/InfoContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
@@ -68,7 +76,7 @@ label_settings = SubResource("LabelSettings_80tpv")
 justification_flags = 162
 text_overrun_behavior = 3
 
-[node name="Description" type="RichTextLabel" parent="HBoxContainer/MarginContainer/HBoxContainer/InfoContainer"]
+[node name="Description" type="RichTextLabel" parent="HBoxContainer/VisibilitySwitcher/MarginContainer/InfoContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
@@ -77,7 +85,7 @@ fit_content = true
 scroll_following = true
 autowrap_mode = 2
 
-[node name="OptionBase" type="Panel" parent="HBoxContainer"]
+[node name="OptionBase" type="Panel" parent="HBoxContainer/VisibilitySwitcher"]
 visible = false
 custom_minimum_size = Vector2(360, 122)
 layout_mode = 2
@@ -86,7 +94,7 @@ size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("4_65d6a")
 
-[node name="OptionContainer" type="HBoxContainer" parent="HBoxContainer/OptionBase"]
+[node name="OptionContainer" type="HBoxContainer" parent="HBoxContainer/VisibilitySwitcher/OptionBase"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,7 +105,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Download" type="Button" parent="HBoxContainer/OptionBase/OptionContainer" groups=["optionbuttons"]]
+[node name="Download" type="Button" parent="HBoxContainer/VisibilitySwitcher/OptionBase/OptionContainer" groups=["optionbuttons"]]
 show_behind_parent = true
 visibility_layer = 2
 custom_minimum_size = Vector2(98, 98)
@@ -109,7 +117,7 @@ focus_neighbor_right = NodePath("../Settings")
 theme_override_styles/normal = ExtResource("5_i6qo8")
 theme_override_styles/hover = ExtResource("5_i6qo8")
 
-[node name="Settings" type="Button" parent="HBoxContainer/OptionBase/OptionContainer" groups=["optionbuttons"]]
+[node name="Settings" type="Button" parent="HBoxContainer/VisibilitySwitcher/OptionBase/OptionContainer" groups=["optionbuttons"]]
 show_behind_parent = true
 visibility_layer = 2
 custom_minimum_size = Vector2(98, 98)
@@ -121,7 +129,7 @@ focus_neighbor_left = NodePath("../Download")
 focus_neighbor_right = NodePath("../Delete")
 theme_override_styles/normal = ExtResource("5_wsopf")
 
-[node name="Delete" type="Button" parent="HBoxContainer/OptionBase/OptionContainer" groups=["optionbuttons"]]
+[node name="Delete" type="Button" parent="HBoxContainer/VisibilitySwitcher/OptionBase/OptionContainer" groups=["optionbuttons"]]
 show_behind_parent = true
 visibility_layer = 2
 custom_minimum_size = Vector2(98, 98)
@@ -139,5 +147,5 @@ theme = ExtResource("7_btxt0")
 toggle_mode = true
 flat = true
 
-[connection signal="pressed" from="HBoxContainer/OptionBase/OptionContainer/Delete" to="StoreListing" method="_on_delete_pressed"]
+[connection signal="pressed" from="HBoxContainer/VisibilitySwitcher/OptionBase/OptionContainer/Delete" to="StoreListing" method="_on_delete_pressed"]
 [connection signal="toggled" from="StoreListing" to="." method="_on_store_listing_toggled"]

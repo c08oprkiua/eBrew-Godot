@@ -1,18 +1,24 @@
 extends PanelContainer
 
+class_name GenericItem
 
-@onready var brewname: Label = $'HBoxContainer/MarginContainer/HBoxContainer/InfoContainer/Title'
-@onready var brewdetails:RichTextLabel = $"HBoxContainer/MarginContainer/HBoxContainer/InfoContainer/Description"
-@onready var delete:Button = $"HBoxContainer/OptionBase/OptionContainer/Delete"
-@onready var download:Button = $"HBoxContainer/OptionBase/OptionContainer/Download"
-@onready var settings:Button = $"HBoxContainer/OptionBase/OptionContainer/Settings"
-@onready var brewicon:TextureRect = $"HBoxContainer/MarginContainer/HBoxContainer/ItemIcon"
+static var amount:int = 0
+
+@onready var brewname:Label = $"HBoxContainer/VisibilitySwitcher/MarginContainer/InfoContainer/Title"
+@onready var brewdetails:RichTextLabel = $"HBoxContainer/VisibilitySwitcher/MarginContainer/InfoContainer/Description"
+@onready var delete:Button = $"HBoxContainer/VisibilitySwitcher/OptionBase/OptionContainer/Delete"
+@onready var download:Button = $"HBoxContainer/VisibilitySwitcher/OptionBase/OptionContainer/Download"
+@onready var settings:Button = $"HBoxContainer/VisibilitySwitcher/OptionBase/OptionContainer/Settings"
+@onready var brewicon:TextureRect = $"HBoxContainer/MarginContainer/ItemIcon"
 
 var localname: StringName
 var localx: int
 var icontemplate: String = "/packages/{name}/icon.png"
 var ziptemplate: String = "/zips/{name}.zip"
 @export var myinfo:AppInfo
+
+func _init():
+	amount += 1
 
 func _ready():
 	SignalBox.connect("InitDir2",setinfo, 4)

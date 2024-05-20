@@ -7,8 +7,8 @@ class_name RefHelpers
 var Information:Dictionary
 var reposet: bool = false
 
-func BufferToJSON(downloadedbuffer: PackedByteArray):
-	var raw: String = downloadedbuffer.get_string_from_utf8()
+func BufferToJSON(downloadedbuffer: PackedByteArray) -> void:
+	var raw:String = downloadedbuffer.get_string_from_utf8()
 	if JSON.parse_string(raw) == null: 
 		OS.alert("There's an issue with the repo.json file, try redownloading it", "repo.json could not be read")
 		reposet = false
@@ -16,25 +16,25 @@ func BufferToJSON(downloadedbuffer: PackedByteArray):
 		Information = JSON.parse_string(raw)
 		reposet = true
 
-func JSONToAppInfo():
+func JSONToAppInfo() -> bool:
 	if not reposet:
 		return false
 	var list: int = Information.packages.size()
-	for items in range(0, list):
+	for items:int in range(0, list):
 		var newitem: AppInfo = AppInfo.new()
 		var infodict: Dictionary = BrewInfo.Information.packages[items]
 		newitem.InformationFromDictionary(infodict)
 		BrewInfo.AppInfoArray.append(newitem)
 	return true
 
-func UnZipBrew(dirp):
+func UnZipBrew(dirp:String) -> void:
 	var zip:ZIPReader = ZIPReader.new()
 	zip.open(dirp)
-	for items in zip.get_files():
-		var itemdir = items.get_base_dir()
+	for items:String in zip.get_files():
+		var itemdir:String = items.get_base_dir()
 		print(items)
 		var extfile:FileAccess = FileAccess.open(BrewInfo.InternalDownloadDir+items.get_file(),FileAccess.WRITE_READ)
-		var content = zip.read_file(items)
+		var content:PackedByteArray = zip.read_file(items)
 		extfile.store_buffer(content)
 		if not DirAccess.dir_exists_absolute(BrewInfo.InternalDownloadDir+itemdir+"/"):
 			for folders in items.count("/"):
