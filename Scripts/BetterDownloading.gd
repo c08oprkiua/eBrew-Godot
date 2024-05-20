@@ -55,7 +55,7 @@ class QueueItem:
 		else:
 			url = info.get("path")
 
-func updatedllist(value: String):
+func updatedllist(value: String) -> void:
 	mutex.lock()
 	iconname = value
 	downloadtypes = {
@@ -114,7 +114,7 @@ func Download() -> void:
 			FileCleanUp()
 	queue.clear()
 
-func FileCleanUp():
+func FileCleanUp() -> void:
 	if FileAccess.file_exists(BrewInfo.InternalDownloadDir+"repo.json"):
 		DirAccess.rename_absolute(BrewInfo.InternalDownloadDir+"repo.json", BrewInfo.RepoDir)
 	if FileAccess.file_exists(BrewInfo.InternalDownloadDir+"icon.png"):
@@ -132,7 +132,7 @@ func FileCleanUp():
 			print("Homebrew directory key not found")
 	SignalBox.emit_signal.call_deferred("DownloadComplete")
 
-func UnZipBrew(_directory):
+func UnZipBrew(_directory) -> void:
 	var zip = ZIPReader.new()
 	zip.open(BrewInfo.InternalDownloadDir+iconname+".zip")
 	for items in zip.get_files():
@@ -148,7 +148,7 @@ func UnZipBrew(_directory):
 				DirAccess.make_dir_absolute(BrewInfo.InternalDownloadDir+items.get_slice("/", folders)+"/")
 		DirAccess.rename_absolute(BrewInfo.InternalDownloadDir+items.get_file(), items)
 
-func DownloadRepo():
+func DownloadRepo() -> void:
 	ConnectWarn = true
 	queue[requestnumber] = 1
 	requestnumber = requestnumber + 1
@@ -158,7 +158,7 @@ func DownloadRepo():
 		DLthread.wait_to_finish()
 	SignalBox.emit_signal("DownloadStarted", false)
 
-func DownloadIcon(appname):
+func DownloadIcon(appname) -> void:
 	mutex.lock()
 	iconname = appname
 	mutex.unlock()
@@ -171,7 +171,7 @@ func DownloadIcon(appname):
 		DLthread.wait_to_finish()
 	SignalBox.emit_signal("DownloadStarted", false)
 
-func DownloadBrew(appname):
+func DownloadBrew(appname) -> void:
 	iconname = appname
 	ConnectWarn = true
 	queue[requestnumber] = 3

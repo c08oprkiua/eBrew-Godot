@@ -2,10 +2,10 @@ extends Node
 
 #Globally set directories
 const UserFiles: String = "user://Userfiles/"
-const inifilepath:String = UserFiles+"ebrewsettings.ini"
-const InternalDownloadDir:String = UserFiles+"Downloads/"
-const RepoDir:String = UserFiles+"repo.json"
-const IconDir:String = UserFiles+"Icons/"
+const inifilepath:String = UserFiles + "ebrewsettings.ini"
+const InternalDownloadDir:String = UserFiles + "Downloads/"
+const RepoDir:String = UserFiles + "repo.json"
+const IconDir:String = UserFiles + "Icons/"
 const version:float = 0.4
 
 #List info
@@ -13,7 +13,7 @@ var Icon: ImageTexture
 var x: int
 var appname: StringName
 var Information: Dictionary
-var AppInfoArray: Array[AppInfo]
+var AppInfoArray: Array[HBASAppInfo]
 ##An array of all the app names. For tracking duplicates.
 var AppNameArray:PackedStringArray
 var setini:ConfigFile = ConfigFile.new()
@@ -32,9 +32,7 @@ func JSONdecoding() -> void:
 func InitRepoProcess() -> void:
 	var Reprocessor: RefHelpers = RefHelpers.new()
 	if FileAccess.file_exists(RepoDir):
-		var raw = FileAccess.get_file_as_bytes(RepoDir)
-		
-	
+		var raw:PackedByteArray = FileAccess.get_file_as_bytes(RepoDir)
 
 func updatevars(arg1: int) -> void:
 	x = arg1
@@ -55,7 +53,7 @@ func loadicon() -> void:
 	SignalBox.emit_signal("Processedicon", x)
 
 func filesyscheck() -> void:
-	var checkarray:Array[String] = [UserFiles, IconDir, InternalDownloadDir]
-	for directories in checkarray:
+	var checkarray:PackedStringArray = [UserFiles, IconDir, InternalDownloadDir]
+	for directories:String in checkarray:
 		if not DirAccess.dir_exists_absolute(directories):
 			DirAccess.make_dir_absolute(directories)

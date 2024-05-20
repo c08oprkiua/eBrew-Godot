@@ -35,17 +35,16 @@ func updooticon(arg1:int) -> void:
 		SignalBox.disconnect("Processedicon", updooticon)
 		SignalBox.disconnect("DownloadComplete", IsThisMyIcon)
 
-func IsThisMyIcon():
+func IsThisMyIcon() -> void:
 	BrewInfo.changeicon(localx)
 
 #Button related processes
-@warning_ignore("shadowed_variable_base_class")
-func _on_toggled(button_pressed:bool) -> void:
-	if button_pressed:
+func _on_toggled(toggled_on:bool) -> void:
+	if toggled_on:
 		brewinfo.visible= false
 		options.visible = true
 		download.grab_focus()
-	elif not button_pressed:
+	else:
 		closebutton()
 
 func _on_download_pressed() -> void:
@@ -67,7 +66,7 @@ func focuscheck(arg1:int) -> void:
 		genericitem.set_pressed(false)
 		options.visible = false
 
-func whenfocus():
+func whenfocus() -> void:
 	BrewInfo.appname = BrewInfo.Information.packages[localx].name
 	#BrewInfo.updatevars(localx)
 	SignalBox.emit_signal("Thisitem", localx)

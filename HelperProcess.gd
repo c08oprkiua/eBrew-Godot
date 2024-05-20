@@ -21,7 +21,7 @@ func JSONToAppInfo():
 		return false
 	var list: int = Information.packages.size()
 	for items in range(0, list):
-		var newitem: AppInfo = AppInfo.new()
+		var newitem: HBASAppInfo = HBASAppInfo.new()
 		var infodict: Dictionary = BrewInfo.Information.packages[items]
 		newitem.InformationFromDictionary(infodict)
 		BrewInfo.AppInfoArray.append(newitem)

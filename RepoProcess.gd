@@ -19,11 +19,10 @@ func BufferToJSON(downloadedbuffer: PackedByteArray) -> void:
 func JSONToAppInfo() -> bool:
 	if not reposet:
 		return false
-	var list: int = Information.packages.size()
+	var list:int = Information.packages.size()
 	for items:int in range(0, list):
-		var newitem: AppInfo = AppInfo.new()
-		var infodict: Dictionary = BrewInfo.Information.packages[items]
-		newitem.InformationFromDictionary(infodict)
+		var infodict:Dictionary = BrewInfo.Information.packages[items]
+		var newitem:HBASAppInfo = HBASAppInfo.new(infodict)
 		BrewInfo.AppInfoArray.append(newitem)
 	return true
 

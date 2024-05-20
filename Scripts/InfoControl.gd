@@ -6,7 +6,7 @@ var settingswindow:PackedScene = preload("res://Scenes/settings.tscn")
 @onready var localx: int
 var empty
 
-func _ready():
+func _ready() -> void:
 	SignalBox.connect("Thisitem", updateinfo)
 	SignalBox.connect("Processedicon", updooticon)
 
@@ -28,4 +28,4 @@ func _on_settings_pressed() -> void:
 	if get_child_count() > 3:
 		get_child(3).show()
 	else:
-		add_child(settingswindow.instantiate(),false, Node.INTERNAL_MODE_DISABLED)
+		add_child(settingswindow.instantiate(), false, Node.INTERNAL_MODE_DISABLED)

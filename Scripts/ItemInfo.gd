@@ -1,5 +1,9 @@
 extends Resource
-class_name AppInfo
+##This is a wrapper class for an app listing on the Homebrew App Store.
+class_name HBASAppInfo
+
+##The directory where all [HBASAppInfo] resources will save to.
+const save_directory:String = "user://AppInfo/"
 
 ##Template for the URL for downloading the icon.
 const icon_template: String = "/packages/{name}/icon.png"
@@ -45,14 +49,14 @@ const zip_template: String = "/zips/{name}.zip"
 ##The MD5 checksum of this app.
 @export var md5:String
 ##The icon for the app.
-@export var icon:Image
+@export var icon:Image = null
 ##The banner for the app.
-@export var banner:Image
+@export var banner:Image = null
 ##Screenshots for the app.
 @export var screenshots:Array[Image]
 
 #After a lot of deliberation and working on other things, I decided that the best way to handle
-#downloading everything efficiently was to have each AppInfo handle it. Downloading on the main
+#downloading everything efficiently was to have each HBASAppInfo handle it. Downloading on the main
 #thread is notoriously lag prone, so all download types get their own threads.
 
 ##The thread that works on downloading the icon.
@@ -83,6 +87,9 @@ func InformationFromDictionary(information: Dictionary) -> void:
 	for keys in information.keys():
 		self.set(keys, information.get(keys))
 
+func get_save_directory() -> String:
+	return save_directory + name + ".tres"
+
 ##Download the icon for the app.
 func downloadIcon() -> void:
 	var client:HTTPClient = HTTPClient.new()
@@ -99,6 +106,6 @@ func downloadScreenshots() -> void:
 func downloadApp() -> void:
 	pass
 
-##Save this AppInfo Resource to the filesystem for caching purposes.
+##Save this HBASAppInfo Resource to the filesystem for caching purposes.
 func save() -> void:
-	pass
+	ResourceSaver.save(self, save_directory + name + ".tres")

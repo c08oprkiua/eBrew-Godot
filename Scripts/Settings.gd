@@ -1,6 +1,5 @@
 extends Control
 
-var haschanges: bool
 
 #These are the dictionaries for inputting the setting name and
 #outputting the node path of that setting
@@ -33,7 +32,7 @@ func ButtonInit() -> void:
 	BrewInfo.setini.load(BrewInfo.inifilepath)
 	if BrewInfo.setini.has_section("AppBehavior"):
 		for entries in BrewInfo.setini.get_section_keys("AppBehavior"):
-			var value = BrewInfo.setini.get_value("AppBehavior", entries)
+			var value:Variant = BrewInfo.setini.get_value("AppBehavior", entries)
 			BrewInfo.setini.set_value("AppBehavior", entries, value)
 			var custpath:String = optdict.get(entries)
 			get_node(custpath).set_pressed(value)
@@ -64,13 +63,13 @@ func _on_icon_delete_pressed() -> void:
 	DeleteConfirm("Icons/")
 
 func DeleteConfirm(items) -> void:
-	var confirm = load("res://Scenes/Confirm.tscn")
+	var confirm:PackedScene = load("res://Scenes/Confirm.tscn")
 	add_child(confirm.instantiate())
 	#put an if/then statement in here about the delete window confirmation
 	await SignalBox.Confirm
 	print(SignalBox.Confirm)
 	if SignalBox.Confirm:
-		for entries in DirAccess.get_files_at(BrewInfo.UserFiles+items):
+		for entries:String in DirAccess.get_files_at(BrewInfo.UserFiles+items):
 			DirAccess.remove_absolute(BrewInfo.UserFiles+items+entries)
 	else: 
 		return
@@ -130,6 +129,7 @@ func _on_test_dir_pressed() -> void:
 	pass # Replace with function body.
 
 #Every setting that is a toggle
+
 #Settings much have a node path matched to their setting name in the optdict variable
 func OptionSwitchToggled(PassedSetting:String, buttonstate:bool) -> void:
 	BrewInfo.setini.set_value("AppBehavior", PassedSetting, buttonstate)
