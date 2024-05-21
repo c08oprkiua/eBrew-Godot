@@ -12,24 +12,41 @@ static var amount:int = 0
 @onready var brewicon:TextureRect = $"HBoxContainer/MarginContainer/ItemIcon"
 @onready var visibility_switcher:TabContainer = $"HBoxContainer/VisibilitySwitcher"
 
-var localx:int
-@export var myinfo:HBASAppInfo:
+@export var myinfo:HBASAppInfo = HBASAppInfo.new():
 	set(value):
 		myinfo = value
 		change_text()
 		change_icon()
-		BrewInfo.changeicon(localx)
+		#BrewInfo.changeicon(localx)
 		myinfo.save()
+
+var load_thread:Thread = Thread.new()
+
+signal threaded_loading_done
+
 
 func _init() -> void:
 	amount += 1
 
-#func _ready() -> void:
-#	SignalBox.connect("InitDir2", setinfo, 4)
-
 func setinfo(item:HBASAppInfo) -> void:
-	if FileAccess.file_exists(item.get_save_directory()):
-		item = ResourceLoader.load(item.get_save_directory(), "HBASAppInfo")
+	myinfo = item
+	if ResourceLoader.exists(item.get_save_directory(), "HBASAppInfo"):
+		connect("threaded_loading_done", load_thread.wait_to_finish)
+		ResourceLoader.load_threaded_request(myinfo.get_save_directory(), "HBASAppInfo", true)
+
+func check_loading_progress() -> void:
+	var status:ResourceLoader.ThreadLoadStatus
+	while status != ResourceLoader.THREAD_LOAD_LOADED:
+		status = ResourceLoader.load_threaded_get_status(myinfo.get_save_directory())
+		if status == ResourceLoader.THREAD_LOAD_FAILED:
+			print("Load failed")
+			break
+		if status == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
+			print("Invalid resource")
+			break
+	print("Resource loaded: ", myinfo.name)
+	myinfo = ResourceLoader.load_threaded_get(myinfo.get_save_directory())
+	emit_signal.call_deferred("threaded_loading_done")
 
 func change_text() -> void:
 	brewname.text = myinfo.title

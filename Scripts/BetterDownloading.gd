@@ -73,15 +73,15 @@ func InitialConnection() -> void:
 	Client.poll()
 	while Client.get_status() != Client.STATUS_CONNECTED:
 		Client.poll()
-		#if Client.get_status() == 0 or 2 or 4:
-		#	print(Client.get_status())
-		#	if ConnectWarn:
-		#		OS.alert("Could not connect to the appstore server. No new images or homebrew will be loaded.", "No Network Connection")
-		#	ConnectOk = false
-		#	break
+		if Client.get_status() == 0 or Client.get_status() == 2 or Client.get_status() == 4:
+			print(Client.get_status())
+			if ConnectWarn:
+				OS.alert("Could not connect to the appstore server. No new images or homebrew will be loaded.", "No Network Connection")
+			ConnectOk = false
+			break
 	if Client.get_status() == Client.STATUS_CONNECTED:
 		ConnectOk = true
-		print("Okay")
+		print("Connected")
 
 func Download() -> void:
 	for todo in queue:

@@ -5,6 +5,7 @@ class_name HBASAppInfo
 ##The directory where all [HBASAppInfo] resources will save to.
 const save_directory:String = "user://AppInfo/"
 
+
 ##Template for the URL for downloading the icon.
 const icon_template: String = "/packages/{name}/icon.png"
 ##Template for the URL for downloading the banner.
@@ -36,11 +37,11 @@ const zip_template: String = "/zips/{name}.zip"
 @export_multiline var changelog:String
 ##How many screenshots are available for the app.
 @export var screens:int
-
+##????????
 @export var extracted:int
 ##Current version of the app.
 @export var version:String
-
+##????????
 @export var filesize:int
 ##The long description about the app.
 @export_multiline var details:String
@@ -57,16 +58,10 @@ const zip_template: String = "/zips/{name}.zip"
 
 #After a lot of deliberation and working on other things, I decided that the best way to handle
 #downloading everything efficiently was to have each HBASAppInfo handle it. Downloading on the main
-#thread is notoriously lag prone, so all download types get their own threads.
+#thread is notoriously lag prone, so a thread is ran for downloading.
+var net_fetch:SimpleHTTP = SimpleHTTP.new()
 
-##The thread that works on downloading the icon.
-var icon_download_thread:Thread = null
-##The thread that works on downloading the banner.
-var banner_download_thread:Thread = null
-##The thread that works on downloading the screenshots.
-var screenshots_download_thread:Thread = null
-##The thread that works on downloading the app.
-var app_download_thread:Thread = null
+var fetch_thread:Thread = Thread.new()
 
 ##A signal that is emitted when the download of the icon is done.
 signal icon_download_done
@@ -76,7 +71,6 @@ signal banner_download_done
 signal screenshots_download_done
 ##A signal that is emitted when the download of the app is done.
 signal app_download_done
-
 
 func _init(info:Dictionary = {}) -> void:
 	if not info.is_empty():
@@ -92,19 +86,26 @@ func get_save_directory() -> String:
 
 ##Download the icon for the app.
 func downloadIcon() -> void:
-	var client:HTTPClient = HTTPClient.new()
+	net_fetch.request_resources #= something something load prefab
+	
+	net_fetch.connect("download_done", applyIcon, CONNECT_ONE_SHOT)
+	#fetch_thread.start(net_fetch.download, Thread.PRIORITY_LOW)
+
+func applyIcon() -> void:
+	icon.load_png_from_buffer(net_fetch.buffer)
+	emit_signal("icon_download_done")
 
 ##Download the banner for the app.
 func downloadBanner() -> void:
-	var client:HTTPClient = HTTPClient.new()
+	net_fetch.download()
 
 ##Download the screenshot(s) for the app, if there are any.
 func downloadScreenshots() -> void:
-	var client:HTTPClient = HTTPClient.new()
+	net_fetch.download()
 
 ##Download the app.
 func downloadApp() -> void:
-	pass
+	net_fetch.download()
 
 ##Save this HBASAppInfo Resource to the filesystem for caching purposes.
 func save() -> void:

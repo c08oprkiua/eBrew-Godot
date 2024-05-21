@@ -22,10 +22,6 @@ func newloadlist() -> void:
 	var list: int = BrewInfo.Information.packages.size()
 	for items:int in range(0, list):
 		var infodict:Dictionary = BrewInfo.Information.packages[items]
-		var item:HBASAppInfo = HBASAppInfo.new(infodict)
-		if FileAccess.file_exists(item.get_save_directory()):
-			item = ResourceLoader.load(item.get_save_directory(), "HBASAppInfo")
 		var new_entry:GenericItem = genericitem.instantiate()
 		add_child(new_entry)
-		new_entry.myinfo = item
-		
+		new_entry.setinfo(HBASAppInfo.new(infodict))
